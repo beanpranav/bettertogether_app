@@ -8,9 +8,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.iwl.bettertogforever.PendingAcceptanceActivity" >
 
-    <TextView
+    <TextView 
+        android:id="@+id/pendingAcceptanceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="Pending acceptance" />
+    
+    <Button
+        android:id="@+id/proceedToApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pendingAcceptanceView"
+        android:layout_alignBottom="@+id/pendingAcceptanceView"
+        android:onClick="proceedToAppClicked"
+        android:text="proceed To App" />
+
+    <Button
+        android:id="@+id/resendInvite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="sendReinviteClicked"
+        android:text="Reinvite" />
 
 </RelativeLayout>

@@ -44,8 +44,8 @@ public class AddCoupleActivity extends ActivityImpl {
 			Intent secretMessageIntent = new Intent(this, SecretMessageActivity.class);
 			startActivity(secretMessageIntent);
 		} else if(coupleAddedStatus.isCoupleAdded() && !coupleAddedStatus.getAcceptStatus().equals("ACCEPTED")) {
-			Toast.makeText(getApplicationContext(), "Sending the notification again to spouse for accepting", Toast.LENGTH_LONG).show();
-			new BetterTogForeverHttpConnectUtils().resendAddSpouseNotification(userId, coupleAddedStatus.getCoupleId());
+			Intent pendingAcceptanceActivity = new Intent(this, PendingAcceptanceActivity.class);
+			startActivity(pendingAcceptanceActivity);
 			insertAddSpouseRequestStatus(AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE);
 		} else{
 			Toast.makeText(getApplicationContext(), coupleAddedStatus.getMsg(), Toast.LENGTH_LONG).show();

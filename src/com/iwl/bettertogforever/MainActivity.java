@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends ActivityImpl {
 
@@ -229,7 +230,7 @@ public class MainActivity extends ActivityImpl {
     	return httpConnect.addRegid(userId, regId, mPhoneNumber);
     }
 	
-	public void signInButtonClicked(View view) {
+public void signInButtonClicked(View view) {
 		
 		if(isOnline()){
 			EditText email = (EditText)findViewById(R.id.email);
@@ -238,20 +239,35 @@ public class MainActivity extends ActivityImpl {
 			AuthUserIdStatus isAuthenticatedUserStatus = httpConnect.authenticateUser(email.getText().toString(), passwd.getText().toString());
 			
 			if(isAuthenticatedUserStatus.isAuthorized()){
-				Integer currentUserId = isAuthenticatedUserStatus.getUserId();
-				Long userIdInsertStatus = insertUserIdToDb(currentUserId);
-				this.userId = currentUserId;
-				doGCMRegistraction();
-				Intent addCoupleIntent = new Intent(this, AddCoupleActivity.class);
-				addCoupleIntent.putExtra("userId", currentUserId);
-				startActivity(addCoupleIntent);
+				if(isAuthenticatedUserStatus.getCplId() != null){
+					addCoupleIdToDb(isAuthenticatedUserStatus.getCplId());
+					Intent acceptAddedCouple = new Intent(context, AcceptAddedCoupleActivity.class);
+					acceptAddedCouple.putExtra("coupleEmail", isAuthenticatedUserStatus.getSpouseEmail());
+					acceptAddedCouple.putExtra("coupleId", isAuthenticatedUserStatus.getCplId());
+					startActivity(acceptAddedCouple);
+				} else {
+					Integer currentUserId = isAuthenticatedUserStatus.getUserId();
+					Long userIdInsertStatus = insertUserIdToDb(currentUserId);
+					this.userId = currentUserId;
+					doGCMRegistraction();
+					Intent addCoupleIntent = new Intent(this, AddCoupleActivity.class);
+					addCoupleIntent.putExtra("userId", currentUserId);
+					startActivity(addCoupleIntent);
+				}
 			}else {
-				//not a valid user with message user/password not valid
+				Toast.makeText(context, "Could not login. Please check username and passwd", Toast.LENGTH_LONG).show();
 			}
 		} else {
 			//redirect to error page
 		}
 	 }
+
+	private void addCoupleIdToDb(Integer cplId) {
+		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		dbDao.insertCoupleId(cplId);
+		dbDao.close();
+	}
 	
 	public void signUpButtonClicked(View view) {
 		Intent iwlIntent = new Intent("android.intent.action.VIEW",

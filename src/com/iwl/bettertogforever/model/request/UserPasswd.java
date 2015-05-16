@@ -10,7 +10,7 @@ public class UserPasswd implements Serializable{
 	
 	private String passwd;
 	
-	private Integer appId = 1;
+	private Integer appId;
 	
 	public Integer getAppId() {
 		return appId;

@@ -6,6 +6,7 @@
     
     <string name="login_cta_title">Dedicated Couples Wishlist</string>
     <string name="login_cta_text">Don’t let your shared wishes fall through ever again</string>
+    
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_couple">AddCoupleActivity</string>
     <string name="title_activity_secret_message">SecretMessageActivity</string>

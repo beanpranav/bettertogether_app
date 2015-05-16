@@ -45,12 +45,6 @@ public class MainActivity extends ActivityImpl {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		Typeface font_primary = Typeface.createFromAsset(getAssets(),"fonts/avenirnext-ultralight.ttf");
-		Typeface font_secondary = Typeface.createFromAsset(getAssets(),"fonts/avenirnext-regular.ttf");
-		TextView tx = (TextView)findViewById(R.id.hello);
-		tx.setTypeface(font_primary);
-	      
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy); 
         

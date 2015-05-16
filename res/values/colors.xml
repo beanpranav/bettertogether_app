@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ 
+    <item name="app_primary" type="color">#21448D</item>
+    <item name="app_secondary" type="color">#999999</item>
+    <item name="app_invert" type="color">#FFFFFF</item>
+    <item name="app_black" type="color">#000000</item>
+ 
+    <integer-array name="androidcolors">
+        <item>@color/app_primary</item>
+        <item>@color/app_secondary</item>
+        <item>@color/app_invert</item>
+        <item>@color/app_black</item>
+    </integer-array>
+ 
+</resources> 

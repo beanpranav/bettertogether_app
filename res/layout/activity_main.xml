@@ -16,7 +16,7 @@
         android:layout_below="@+id/signup"
         android:layout_marginTop="17dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="@string/hello_world"
+        android:text="@string/app_tagline"
         android:textSize="70sp" />
         
     <Button

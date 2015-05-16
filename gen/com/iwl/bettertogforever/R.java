@@ -2093,7 +2093,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a0042;
         public static final int action_mode_bar_stub=0x7f0a0041;
         public static final int action_mode_close_button=0x7f0a0034;
-        public static final int action_settings=0x7f0a005f;
+        public static final int action_settings=0x7f0a0062;
         public static final int activity_chooser_view_content=0x7f0a0035;
         public static final int addCouple=0x7f0a0057;
         public static final int addCoupleButton=0x7f0a0054;
@@ -2141,10 +2141,13 @@ containing a value of this type.
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a000b;
         public static final int passwd=0x7f0a005c;
+        public static final int pendingAcceptanceView=0x7f0a005e;
+        public static final int proceedToApp=0x7f0a005f;
         public static final int production=0x7f0a0025;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a003f;
+        public static final int resendInvite=0x7f0a0060;
         public static final int sandbox=0x7f0a0026;
         public static final int satellite=0x7f0a0021;
         public static final int search_badge=0x7f0a0049;
@@ -2157,7 +2160,7 @@ containing a value of this type.
         public static final int search_plate=0x7f0a004d;
         public static final int search_src_text=0x7f0a004e;
         public static final int search_voice_btn=0x7f0a0052;
-        public static final int secretMsg=0x7f0a005e;
+        public static final int secretMsg=0x7f0a0061;
         public static final int selectionDetails=0x7f0a0029;
         public static final int shortcut=0x7f0a003e;
         public static final int showCustom=0x7f0a0010;

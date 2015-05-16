@@ -1584,12 +1584,12 @@ containing a value of this type.
         public static final int normal=0x7f080003;
         public static final int passwd=0x7f08005a;
         public static final int pendingAcceptanceView=0x7f08005c;
-        public static final int proceedToApp=0x7f08005d;
+        public static final int proceedToApp=0x7f08005e;
         public static final int production=0x7f080009;
         public static final int progress_circular=0x7f08002d;
         public static final int progress_horizontal=0x7f08002e;
         public static final int radio=0x7f080044;
-        public static final int resendInvite=0x7f08005e;
+        public static final int resendInvite=0x7f08005d;
         public static final int sandbox=0x7f08000a;
         public static final int satellite=0x7f080004;
         public static final int search_badge=0x7f080047;

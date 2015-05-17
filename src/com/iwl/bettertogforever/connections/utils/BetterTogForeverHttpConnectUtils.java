@@ -41,10 +41,16 @@ public class BetterTogForeverHttpConnectUtils {
 	}
 	
 	public void acceptSpouse(Integer coupleId, Integer usrId){
-		template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ACCEPT_SPOUSE_PATH, coupleId, boolean.class);
+		UsrIdCplId request = new UsrIdCplId();
+		request.setCplId(coupleId);
+		request.setUsrId(usrId);
+		template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ACCEPT_SPOUSE_PATH, request, boolean.class);
 	}
 	
-	public void declineSpouse(Integer coupleId){
+	public void declineSpouse(Integer coupleId, Integer usrId){
+		UsrIdCplId request = new UsrIdCplId();
+		request.setCplId(coupleId);
+		request.setUsrId(usrId);
 		template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_DECLINE_SPOUSE_PATH, coupleId, boolean.class);
 	}
 	

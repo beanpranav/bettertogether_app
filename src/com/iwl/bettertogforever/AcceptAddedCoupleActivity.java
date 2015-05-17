@@ -34,7 +34,7 @@ public class AcceptAddedCoupleActivity extends ActivityImpl {
 	
 	public void acceptButtonClicked(View view) {
 		UserIdCoupleIdPair usrIdCplId = getUserId();
-		httpUtils.acceptSpouse(coupleId, usrIdCplId.getUserId());
+		httpUtils.acceptSpouse(usrIdCplId.getCoupleId(), usrIdCplId.getUserId());
 		deleteEmailOfSpouseFromDb();
 		updateDbWithAddSpouseAcceptStatus(AddSpouseRequestStatusConstants.ACCEPTED);
 	}
@@ -62,8 +62,10 @@ public class AcceptAddedCoupleActivity extends ActivityImpl {
 	}
 
 	public void declineButtonClicked(View view) {
-		httpUtils.declineSpouse(coupleId);
+		UserIdCoupleIdPair usrIdCplId = getUserId();
+		httpUtils.declineSpouse(usrIdCplId.getCoupleId(), usrIdCplId.getUserId());
 		deleteEmailOfSpouseFromDb();
+		updateDbWithAddSpouseAcceptStatus(AddSpouseRequestStatusConstants.DECLINED);
 	}
 
 	@Override

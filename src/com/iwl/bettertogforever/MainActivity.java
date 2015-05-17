@@ -12,7 +12,6 @@ import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -24,7 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends ActivityImpl {
@@ -46,12 +44,6 @@ public class MainActivity extends ActivityImpl {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-//		Typeface font_primary = Typeface.createFromAsset(getAssets(),"fonts/AvenirNext-UltraLight.ttf");
-		Typeface font_primary_italic = Typeface.createFromAsset(getAssets(),"fonts/AvenirNext-UltraLightItalic.ttf");
-//		Typeface font_secondary = Typeface.createFromAsset(getAssets(),"fonts/AvenirNext-Medium.ttf");
-		TextView tx = (TextView)findViewById(R.id.hello);
-		tx.setTypeface(font_primary_italic);
 	      
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy); 

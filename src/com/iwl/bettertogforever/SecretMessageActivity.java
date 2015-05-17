@@ -1,15 +1,19 @@
 package com.iwl.bettertogforever;
 
 import com.iwl.bettertogforever.connections.utils.BetterTogForeverHttpConnectUtils;
+import com.iwl.bettertogforever.constants.AddSpouseRequestStatusConstants;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SecretMessageActivity extends ActivityImpl {
 
@@ -30,6 +34,14 @@ public class SecretMessageActivity extends ActivityImpl {
 			}
 		}
 		secretMessage.setText(secretMsg);
+	}
+	
+	public void addSecretMsgClicked(View view) {
+		EditText secretMessage = (EditText)findViewById(R.id.secretMsgAddText);
+		String msgToUpdate = secretMessage.getText().toString();
+		UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId();
+		new BetterTogForeverHttpConnectUtils().addSecretMessage(userIdCoupleId.getUserId(), userIdCoupleId.getCoupleId(), msgToUpdate);
+		Toast.makeText(this, "Sent secret message to your loved one", Toast.LENGTH_LONG);
 	}
 	
 	private UserIdCoupleIdPair getUserIdCoupleId() {

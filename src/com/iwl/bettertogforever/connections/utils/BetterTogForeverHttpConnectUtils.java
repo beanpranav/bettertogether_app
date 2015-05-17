@@ -2,6 +2,7 @@ package com.iwl.bettertogforever.connections.utils;
 
 import org.springframework.web.client.RestTemplate;
 
+import com.iwl.bettertogforever.model.request.AddOrUpdateSecretMessage;
 import com.iwl.bettertogforever.model.request.RegIdAdd;
 import com.iwl.bettertogforever.model.request.CoupleAdd;
 import com.iwl.bettertogforever.model.request.UserPasswd;
@@ -20,6 +21,7 @@ public class BetterTogForeverHttpConnectUtils {
 	private final String YOU_AND_ME_ADD_REGID_PATH = "rest/regid/addregid/";
 	private final String YOU_AND_ME_RESEND_ADD_NOTIFICATION_PATH = "rest/couple/resendaddcouplerequest/";
 	private final String YOU_AND_ME_SECRET_MESSGAE_PATH = "rest/secretmsg/getsecretmsg/";
+	private final String YOU_AND_ME_ADD_SECRET_MESSGAE_PATH = "rest/secretmsg/addsecretmsg/";
 	
 	public AuthUserIdStatus authenticateUser(String email, String passwd){
 		
@@ -76,6 +78,15 @@ public class BetterTogForeverHttpConnectUtils {
 		request.setCplId(cplId);
 		request.setUsrId(userId);
 		String result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_SECRET_MESSGAE_PATH, request, String.class);
+	    return result;
+	}
+	
+	public String addSecretMessage(Integer userId, Integer cplId, String scrtMsg){
+		AddOrUpdateSecretMessage request = new AddOrUpdateSecretMessage();
+		request.setCplId(cplId);
+		request.setUsrId(userId);
+		request.setMsg(scrtMsg);
+		String result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ADD_SECRET_MESSGAE_PATH, request, String.class);
 	    return result;
 	}
 }

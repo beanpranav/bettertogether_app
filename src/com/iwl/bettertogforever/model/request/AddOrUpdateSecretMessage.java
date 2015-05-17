@@ -6,6 +6,14 @@ public class AddOrUpdateSecretMessage implements Serializable{
 
 	private Integer usrId;
 	private String msg;
+	private Integer cplId;
+	
+	public Integer getCplId() {
+		return cplId;
+	}
+	public void setCplId(Integer cplId) {
+		this.cplId = cplId;
+	}
 	public Integer getUsrId() {
 		return usrId;
 	}

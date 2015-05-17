@@ -108,7 +108,7 @@ public class BetterTogForeverSqlliteDao {
 		ContentValues coupleIdContent = new ContentValues();
 		String nullString = null;
 		coupleIdContent.put(SqlQueries.COUPLE_EMAIL_COLUMN, nullString);
-		database.update(SqlQueries.COUPLE_EMAIL_COLUMN, coupleIdContent, null, null);
+		database.update(SqlQueries.USER_ID_COUPLE_ID_TABLE, coupleIdContent, null, null);
 	}
 	
 	public String getReceivedAddRequestId(){

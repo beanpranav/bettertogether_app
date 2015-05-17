@@ -240,7 +240,10 @@ public void signInButtonClicked(View view) {
 			
 			if(isAuthenticatedUserStatus.isAuthorized()){
 				if(isAuthenticatedUserStatus.getCplId() != null){
+					insertUserIdToDb(isAuthenticatedUserStatus.getUserId());
 					addCoupleIdToDb(isAuthenticatedUserStatus.getCplId());
+					this.userId = isAuthenticatedUserStatus.getUserId();
+					doGCMRegistraction();
 					Intent acceptAddedCouple = new Intent(context, AcceptAddedCoupleActivity.class);
 					acceptAddedCouple.putExtra("coupleEmail", isAuthenticatedUserStatus.getSpouseEmail());
 					acceptAddedCouple.putExtra("coupleId", isAuthenticatedUserStatus.getCplId());

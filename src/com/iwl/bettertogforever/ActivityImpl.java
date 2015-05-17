@@ -2,10 +2,11 @@ package com.iwl.bettertogforever;
 
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 
-public class ActivityImpl extends ActionBarActivity{
+public class ActivityImpl extends Activity{
 
 	private BetterTogForeverSqlliteDao dbDao;
 	

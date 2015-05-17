@@ -37,6 +37,8 @@ public class AcceptAddedCoupleActivity extends ActivityImpl {
 		httpUtils.acceptSpouse(usrIdCplId.getCoupleId(), usrIdCplId.getUserId());
 		deleteEmailOfSpouseFromDb();
 		updateDbWithAddSpouseAcceptStatus(AddSpouseRequestStatusConstants.ACCEPTED);
+		Intent beginIntent = new Intent(this, LetsBeginActivity.class);
+		startActivity(beginIntent);
 	}
 	
 	private void updateDbWithAddSpouseAcceptStatus(Integer status) {

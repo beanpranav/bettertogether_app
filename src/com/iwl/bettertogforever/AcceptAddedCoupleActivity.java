@@ -24,7 +24,7 @@ public class AcceptAddedCoupleActivity extends ActivityImpl {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_accept_added_couple);
 		
-		TextView emailIdTryingToAddYou = (TextView)findViewById(R.id.emailTryingToAdd);
+		TextView emailIdTryingToAddYou = (TextView)findViewById(R.id.accept_couple_partner_email);
 		Intent intent = getIntent();
 		coupleEmail = intent.getStringExtra("coupleEmail");
 		coupleId = intent.getIntExtra("coupleId", 0);

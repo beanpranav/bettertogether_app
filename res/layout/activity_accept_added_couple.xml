@@ -47,12 +47,12 @@
 	                android:text="@string/accept_couple_partner_name" />
 
 	            <TextView
-	                android:id="@+id/accept_couple_partner_phone"
+	                android:id="@+id/accept_couple_partner_email"
 	                style="@style/text_primary"
 	                android:layout_below="@+id/accept_couple_partner_name"
 	                android:layout_centerHorizontal="true"
 	                android:layout_marginTop="4dp"
-	                android:text="@string/accept_couple_partner_phone" />
+	                android:text="@string/accept_couple_partner_email" />
 	            
 	        </RelativeLayout>
 

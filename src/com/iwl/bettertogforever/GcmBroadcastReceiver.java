@@ -68,15 +68,15 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
     		Toast.makeText(context, "received updated list " + (CharSequence) extras.get(MessageTypesConstants.SHARED_LIST_DATA), Toast.LENGTH_LONG).show();
     	} else if(msgType.equals(MessageTypesConstants.ACCEPT_DECLINE_MSG_TAG)){
     		Toast.makeText(context, "received accept decline status " + (CharSequence) extras.get(MessageTypesConstants.ACCEPT_DECLINE_EMAIL_DATA), Toast.LENGTH_LONG).show();
-    		receivedAddStatusHandling(context, (String)extras.get(MessageTypesConstants.ACCEPT_DECLINE_EMAIL_DATA), (Boolean)extras.get(MessageTypesConstants.ACCEPT_DECLINE_STATUS_DATA));
+    		receivedAddStatusHandling(context, (String)extras.get(MessageTypesConstants.ACCEPT_DECLINE_EMAIL_DATA), (String)extras.get(MessageTypesConstants.ACCEPT_DECLINE_STATUS_DATA));
     	} else {
     		Toast.makeText(context, "received some message", Toast.LENGTH_LONG).show();
     		
     	}
 	}
 	
-	private void receivedAddStatusHandling(Context context, String email, Boolean accepted) {
-		if(accepted){
+	private void receivedAddStatusHandling(Context context, String email, String accepted) {
+		if(accepted.equals("true")){
 			updateDbWithReceivedRequest(AddSpouseRequestStatusConstants.ACCEPTED);
 		} else{
 			updateDbWithReceivedRequest(AddSpouseRequestStatusConstants.DECLINED);

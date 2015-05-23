@@ -60,6 +60,13 @@ public class MainActivity extends ActivityImpl {
     		String hasReceivedCoupleAddRequest = hasCoupleAddedRequest();
     		Integer addSpouseRequestStatus = getAddSpouseRequestStatus();
     		
+    		if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE){
+    			Intent pendingAcceptanceIntent = new Intent(this, PendingAcceptanceActivity.class);
+    			startActivity(pendingAcceptanceIntent);
+    		} else if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.ACCEPTED){
+    			Intent letsBeginIntent = new Intent(this, LetsBeginActivity.class);
+    			startActivity(letsBeginIntent);
+    		} else
     		//If the user has received adding couple notification earlier then we show the accept couple view.
     		//Once accepted or declined the hasReceivedCoupleAddRequest will be wiped out. This happens when 
     		//someone else is trying to add you as a spouse
@@ -69,12 +76,6 @@ public class MainActivity extends ActivityImpl {
     			acceptAddedCoupleIntent.putExtra("coupleId", userIdCoupleId.getCoupleId());
 				startActivity(acceptAddedCoupleIntent);
     		} 
-    		//This happens if you have sent a request to someone and not yet received a accept oor decline
-    		//response
-    		else if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE){
-    			Intent pendingAcceptanceIntent = new Intent(this, PendingAcceptanceActivity.class);
-    			startActivity(pendingAcceptanceIntent);
-    		}
         	//user hasnt added the couple
     		else if(userIdCoupleId.getCoupleId() == null || userIdCoupleId.getCoupleId() == 0){
         		Intent addCoupleIntent = new Intent(this, AddCoupleActivity.class);
@@ -231,7 +232,7 @@ public void signInButtonClicked(View view) {
 			AuthUserIdStatus isAuthenticatedUserStatus = httpConnect.authenticateUser(email.getText().toString(), passwd.getText().toString());
 			
 			if(isAuthenticatedUserStatus.isAuthorized()){
-				if(isAuthenticatedUserStatus.getCplId() != null){
+				if(isAuthenticatedUserStatus.getCplId() != null && isAuthenticatedUserStatus.getCplStatus() == AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE){
 					insertUserIdToDb(isAuthenticatedUserStatus.getUserId());
 					addCoupleIdToDb(isAuthenticatedUserStatus.getCplId());
 					this.userId = isAuthenticatedUserStatus.getUserId();
@@ -240,6 +241,13 @@ public void signInButtonClicked(View view) {
 					acceptAddedCouple.putExtra("coupleEmail", isAuthenticatedUserStatus.getSpouseEmail());
 					acceptAddedCouple.putExtra("coupleId", isAuthenticatedUserStatus.getCplId());
 					startActivity(acceptAddedCouple);
+				} else if(isAuthenticatedUserStatus.getCplId() != null && isAuthenticatedUserStatus.getCplStatus() == AddSpouseRequestStatusConstants.ACCEPTED){
+					insertUserIdToDb(isAuthenticatedUserStatus.getUserId());
+					addCoupleIdToDb(isAuthenticatedUserStatus.getCplId());
+					this.userId = isAuthenticatedUserStatus.getUserId();
+					doGCMRegistraction();
+					Intent letsBeginIntent = new Intent(context, LetsBeginActivity.class);
+					startActivity(letsBeginIntent);
 				} else {
 					Integer currentUserId = isAuthenticatedUserStatus.getUserId();
 					Long userIdInsertStatus = insertUserIdToDb(currentUserId);

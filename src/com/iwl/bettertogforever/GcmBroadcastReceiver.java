@@ -7,6 +7,7 @@ import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -81,7 +82,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 		} else{
 			updateDbWithReceivedRequest(AddSpouseRequestStatusConstants.DECLINED);
 		}
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setAutoCancel(true).setSmallIcon(R.drawable.ic_launcher).setContentTitle("My Success Mantra!").setContentText("Time to review...");
+		Notification.Builder mBuilder = new Notification.Builder(context).setAutoCancel(true).setSmallIcon(R.drawable.ic_launcher).setContentTitle("your better half add status!").setContentText("status " + accepted);
 		Intent mainActivity = new Intent(context, MainActivity.class);
 		
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, mainActivity, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -94,7 +95,7 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 	}
 
 	private void displayNotificationOfUserTryingToadd(Context context, String email, Integer coupleId) {
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setAutoCancel(true).setSmallIcon(R.drawable.ic_launcher).setContentTitle("My Success Mantra!").setContentText("Time to review...");
+		Notification.Builder mBuilder = new Notification.Builder(context).setAutoCancel(true).setSmallIcon(R.drawable.ic_launcher).setContentTitle("My Success Mantra!").setContentText("Time to review...");
 		Intent acceptAddedCouple = new Intent(context, AcceptAddedCoupleActivity.class);
 		acceptAddedCouple.putExtra("coupleEmail", email);
 		acceptAddedCouple.putExtra("coupleId", coupleId);

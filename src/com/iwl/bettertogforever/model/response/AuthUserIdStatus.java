@@ -17,9 +17,18 @@ public class AuthUserIdStatus implements Serializable{
 	//These fields are set only when the status of the user trying to login is pending in couples table
 	private Integer cplId;
 	private String spouseEmail;
+	private Integer cplStatus;
 	
+	public Integer getCplStatus() {
+		return cplStatus;
+	}
+
+	public void setCplStatus(Integer cplStatus) {
+		this.cplStatus = cplStatus;
+	}
+
 	public AuthUserIdStatus(){}
-	
+
 	public void setAuthorized(boolean isAuthorized) {
 		this.isAuthorized = isAuthorized;
 	}

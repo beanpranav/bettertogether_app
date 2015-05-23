@@ -1,35 +1,71 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.iwl.bettertogforever.AddCoupleActivity" >
+    style="@style/setup_scroll_layout"
+	tools:context="com.iwl.bettertogforever.AddCoupleActivity" >
 
+    <RelativeLayout
+        android:id="@+id/layout_center"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" >
 
-    <EditText
-        android:id="@+id/coupleEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:inputType="textEmailAddress" >
+        <LinearLayout
+            style="@style/setup_linear_layout" >
 
-        <requestFocus />
-    </EditText>
+            <ImageView
+                android:id="@+id/bt_logo"
+                style="@style/image_linear_layout"
+                android:layout_marginBottom="50dp"
+                android:contentDescription="@string/app_logo"
+                android:src="@drawable/bt_logo" />
+
+            <TextView
+                android:id="@+id/login_cta_title"
+                style="@style/setup_text_primary"
+                android:text="@string/add_couple_cta_title" />
+
+            <TextView
+                android:id="@+id/login_cta_text"
+                style="@style/setup_text_secondary"
+                android:text="@string/add_couple_cta_text" />
+
+            <RelativeLayout
+		        android:id="@+id/edit_email"
+		        style="@style/setup_relative_layout"
+	            android:layout_marginTop="105dp" >
+	            
+	            <ImageView
+	                android:id="@+id/email_box"
+          	  	    style="@style/image_relative_layout"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/email" />
+	            
+	            <ImageView
+	                android:id="@+id/email_box_active"
+          	  	    style="@style/image_relative_layout"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/email_active" />
+
+	            <EditText
+	                android:id="@+id/coupleEmail"
+	                style="@style/setup_input_text"
+	                android:inputType="textEmailAddress" />
+	            
+	        </RelativeLayout>
+
+            <Button
+                android:id="@+id/addCouple"
+                style="@style/button_primary"
+                android:layout_marginTop="20dp"
+                android:onClick="addCoupleButtonClicked"
+                android:text="@string/add_couple_cta_button_primary" />
+
+            <Button
+                android:id="@+id/skip_to_app"
+                style="@style/button_secondary"
+                android:onClick="skipButtonClicked"
+                android:text="@string/add_couple_cta_button_secondary" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>
     
-    
-    <Button
-        android:id="@+id/addCouple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/coupleEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:onClick="addCoupleButtonClicked"
-        android:text="add couple" />
-
-</RelativeLayout>

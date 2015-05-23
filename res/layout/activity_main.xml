@@ -1,9 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/app_invert"
-    android:fillViewport="true"
+    style="@style/setup_scroll_layout"
     tools:context="com.iwl.bettertogforever.MainActivity" >
 
     <RelativeLayout
@@ -12,61 +9,72 @@
         android:layout_height="fill_parent" >
 
         <LinearLayout
-            style="@style/layout_setup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
+            style="@style/setup_linear_layout" >
 
             <ImageView
                 android:id="@+id/bt_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                style="@style/image_linear_layout"
                 android:layout_marginBottom="50dp"
                 android:contentDescription="@string/app_logo"
-                android:scaleType="center"
                 android:src="@drawable/bt_logo" />
 
             <TextView
                 android:id="@+id/login_cta_title"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="@string/login_cta_title"
-                android:textColor="@color/app_primary"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                style="@style/setup_text_primary"
+                android:text="@string/login_cta_title" />
 
             <TextView
                 android:id="@+id/login_cta_text"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="@string/login_cta_text"
-                android:textColor="@color/app_secondary"
-                android:textSize="18sp" />
+                style="@style/setup_text_secondary"
+                android:text="@string/login_cta_text" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/app_primary" />
+            <RelativeLayout
+		        android:id="@+id/edit_email"
+		        style="@style/setup_relative_layout"
+	            android:layout_marginTop="50dp" >
+	            
+	            <ImageView
+	                android:id="@+id/email_box"
+          	  	    style="@style/image_relative_layout"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/email" />
+	            
+	            <ImageView
+	                android:id="@+id/email_box_active"
+          	  	    style="@style/image_relative_layout"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/email_active" />
 
-            <EditText
-                android:id="@+id/passwd"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:inputType="textPassword"
-                android:textColor="@color/app_primary" />
+	            <EditText
+	                android:id="@+id/email"
+	                style="@style/setup_input_text"
+	                android:inputType="textEmailAddress" />
+	            
+	        </RelativeLayout>
+
+            <RelativeLayout
+		        android:id="@+id/edit_password"
+		        style="@style/setup_relative_layout"
+	            android:layout_marginTop="5dp" >
+	            
+	            <ImageView
+	                android:id="@+id/password_box"
+          	  	    style="@style/image_relative_layout"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/password" />
+	            
+	            <ImageView
+	                android:id="@+id/passowrd_box_active"
+          	  	    style="@style/image_relative_layout"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/password_active" />
+
+	            <EditText
+	                android:id="@+id/passwd"
+	                style="@style/setup_input_text"
+	                android:inputType="textPassword" />
+	            
+	        </RelativeLayout>
 
             <Button
                 android:id="@+id/signin"

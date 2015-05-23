@@ -21,7 +21,18 @@
 	    <item name="android:windowNoTitle">true</item>
 	</style>
 	
-    <style name="layout_setup">
+<!-- LAYOUT STYLES -->
+    <style name="setup_scroll_layout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:background">@color/app_invert</item>
+    </style>
+    
+    <style name="setup_linear_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
         <item name="android:orientation">vertical</item>
         <item name="android:paddingBottom">40dp</item>
         <item name="android:paddingLeft">20dp</item>
@@ -29,6 +40,27 @@
         <item name="android:paddingTop">40dp</item>
     </style>
     
+    <style name="setup_relative_layout">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    
+    <style name="image_linear_layout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    
+    <style name="image_relative_layout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    
+<!-- BUTTON STYLES -->
     <style name="button_primary">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">50dp</item>
@@ -43,6 +75,38 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:background">@color/app_invert</item>
         <item name="android:textColor">@color/app_primary</item>
+    </style>
+    
+<!-- TEXT STYLES -->
+	<style name="setup_text_primary">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/app_primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+	<style name="setup_text_secondary">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/app_secondary</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    
+	<style name="setup_input_text">
+        <item name="android:layout_width">185dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:background">@color/app_invert</item>
+        <item name="android:textColor">@color/app_primary</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

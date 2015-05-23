@@ -4,10 +4,17 @@
     <string name="app_name">Better Together</string>
     <string name="app_tagline">Better Together, Forever</string>
     <string name="app_logo">BT Logo</string>
+    
     <string name="login_cta_title">Dedicated Couples Wishlist</string>
     <string name="login_cta_text">Don’t let your shared wishes fall through ever again</string>
     <string name="login_cta_button_primary">Login</string>
     <string name="login_cta_button_secondary">Create my account</string>
+    
+    <string name="add_couple_cta_title">Invite your Better-half!</string>
+    <string name="add_couple_cta_text">Send a personal invitation to your partner via email</string>
+    <string name="add_couple_cta_button_primary">Send Invite</string>
+    <string name="add_couple_cta_button_secondary">Skip</string>
+    
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_couple">AddCoupleActivity</string>
     <string name="title_activity_secret_message">SecretMessageActivity</string>

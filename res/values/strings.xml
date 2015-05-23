@@ -15,6 +15,13 @@
     <string name="add_couple_cta_button_primary">Send Invite</string>
     <string name="add_couple_cta_button_secondary">Skip</string>
     
+    <string name="accept_couple_cta_title">You have been Invited!</string>
+    <string name="accept_couple_cta_text">Your partner has setup a shared wishlist and wants to do more together</string>
+    <string name="accept_couple_partner_name">PRANAV GUPTA</string>
+    <string name="accept_couple_partner_phone">9586238177</string>
+    <string name="accept_couple_cta_button_primary">Accept Invitation</string>
+    <string name="accept_couple_cta_button_secondary">Decline</string>
+    
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_couple">AddCoupleActivity</string>
     <string name="title_activity_secret_message">SecretMessageActivity</string>

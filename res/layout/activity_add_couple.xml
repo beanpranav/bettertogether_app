@@ -19,12 +19,12 @@
                 android:src="@drawable/bt_logo" />
 
             <TextView
-                android:id="@+id/login_cta_title"
+                android:id="@+id/add_couple_cta_title"
                 style="@style/setup_text_primary"
                 android:text="@string/add_couple_cta_title" />
 
             <TextView
-                android:id="@+id/login_cta_text"
+                android:id="@+id/add_couple_cta_text"
                 style="@style/setup_text_secondary"
                 android:text="@string/add_couple_cta_text" />
 

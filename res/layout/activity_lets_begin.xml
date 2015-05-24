@@ -27,19 +27,19 @@
             <TextView
                 android:id="@+id/add_couple_cta_text_1"
                 style="@style/text_invert"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/welcome_cta_text_1" />
             
             <TextView
                 android:id="@+id/add_couple_cta_text_2"
                 style="@style/text_invert"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="47dp"
                 android:text="@string/welcome_cta_text_2" />
             
             <TextView
                 android:id="@+id/add_couple_cta_text_3"
                 style="@style/text_invert"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="0dp"
                 android:text="@string/welcome_cta_text_3" />
 
             <RelativeLayout

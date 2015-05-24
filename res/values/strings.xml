@@ -6,21 +6,27 @@
     <string name="app_logo">BT Logo</string>
     
     <string name="login_cta_title">Dedicated Couples Wishlist</string>
-    <string name="login_cta_text">Don’t let your shared wishes fall through ever again</string>
+    <string name="login_cta_text">Don’t let your shared wishes \nfall through ever again</string>
     <string name="login_cta_button_primary">Login</string>
     <string name="login_cta_button_secondary">Create my account</string>
     
     <string name="add_couple_cta_title">Invite your Better-half!</string>
-    <string name="add_couple_cta_text">Send a personal invitation to your partner via email</string>
+    <string name="add_couple_cta_text">Send a personal invitation \nto your partner via email</string>
     <string name="add_couple_cta_button_primary">Send Invite</string>
     <string name="add_couple_cta_button_secondary">Skip</string>
     
     <string name="accept_couple_cta_title">You have been Invited!</string>
-    <string name="accept_couple_cta_text">Your partner has setup a shared wishlist and wants to do more together</string>
-    <string name="accept_couple_partner_name">PRANAV GUPTA</string>
-    <string name="accept_couple_partner_email">bean.pranav@gmail.com</string>
+    <string name="accept_couple_cta_text">Your partner has setup a \nshared wishlist and wants \nto do more together</string>
+    <string name="accept_couple_partner_name">PRAGYA SAXENA</string>
+    <string name="accept_couple_partner_email">saxena.pragya8@gmail.com</string>
     <string name="accept_couple_cta_button_primary">Accept Invitation</string>
     <string name="accept_couple_cta_button_secondary">Decline</string>
+    
+    <string name="welcome_cta_title">Welcome!</string>
+    <string name="welcome_cta_text_1">A private place has been created for both of you.</string>
+    <string name="welcome_cta_text_2">Drop a love-note or \nfulfill each other’s wishes.</string>
+    <string name="welcome_cta_text_3">Be in love together, forever</string>
+    <string name="welcome_cta_button_primary">Let\'s Begin</string>
     
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_couple">AddCoupleActivity</string>

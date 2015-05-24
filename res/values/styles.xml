@@ -29,6 +29,13 @@
         <item name="android:background">@color/app_invert</item>
     </style>
     
+    <style name="setup_scroll_layout_invert">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:background">@color/app_primary</item>
+    </style>
+    
     <style name="setup_linear_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -69,6 +76,14 @@
         <item name="android:textColor">@color/app_invert</item>
     </style>
     
+    <style name="button_primary_invert">
+        <item name="android:layout_width">236dp</item>
+        <item name="android:layout_height">46dp</item>
+	   	<item name="android:layout_centerInParent">true</item>
+        <item name="android:background">@color/app_primary</item>
+        <item name="android:textColor">@color/app_invert</item>
+    </style>
+    
     <style name="button_secondary">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">40dp</item>
@@ -78,7 +93,7 @@
     </style>
     
 <!-- TEXT STYLES -->
-	<style name="setup_text_primary">
+	<style name="text_primary_bold">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
@@ -97,7 +112,26 @@
         <item name="android:textSize">18sp</item>
     </style>
     
-	<style name="setup_text_secondary">
+	<style name="text_invert">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/app_invert</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    
+	<style name="text_invert_big">
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/app_invert</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+    
+	<style name="text_secondary">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
@@ -106,7 +140,7 @@
         <item name="android:textSize">18sp</item>
     </style>
     
-	<style name="setup_input_text">
+	<style name="text_input">
         <item name="android:layout_width">185dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>

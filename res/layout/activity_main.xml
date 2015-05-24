@@ -20,12 +20,12 @@
 
             <TextView
                 android:id="@+id/login_cta_title"
-                style="@style/setup_text_primary"
+                style="@style/text_primary_bold"
                 android:text="@string/login_cta_title" />
 
             <TextView
                 android:id="@+id/login_cta_text"
-                style="@style/setup_text_secondary"
+                style="@style/text_secondary"
                 android:text="@string/login_cta_text" />
 
             <RelativeLayout
@@ -47,7 +47,7 @@
 
 	            <EditText
 	                android:id="@+id/email"
-	                style="@style/setup_input_text"
+	                style="@style/text_input"
 	                android:inputType="textEmailAddress" />
 	            
 	        </RelativeLayout>
@@ -71,7 +71,7 @@
 
 	            <EditText
 	                android:id="@+id/passwd"
-	                style="@style/setup_input_text"
+	                style="@style/text_input"
 	                android:inputType="textPassword" />
 	            
 	        </RelativeLayout>

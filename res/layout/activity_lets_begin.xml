@@ -1,23 +1,71 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    style="@style/setup_scroll_layout"
+    android:background="@color/app_primary"
     tools:context="com.iwl.bettertogforever.LetsBeginActivity" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
     
-    <Button
-                android:id="@+id/letsBegin"
-                style="@style/button_primary"
-                android:layout_marginTop="20dp"
-                android:onClick="letsBeginClicked"
-                android:text="Let's Begin" />
+    <RelativeLayout
+        android:id="@+id/layout_center"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" >
 
-</RelativeLayout>
+        <LinearLayout
+            style="@style/setup_linear_layout" >
+
+            <ImageView
+                android:id="@+id/bt_logo"
+                style="@style/image_linear_layout"
+                android:layout_marginBottom="50dp"
+                android:contentDescription="@string/app_logo"
+                android:src="@drawable/bt_logo_invert" />
+
+            <TextView
+                android:id="@+id/add_couple_cta_title"
+                style="@style/text_invert_big"
+                android:text="@string/welcome_cta_title" />
+
+            <TextView
+                android:id="@+id/add_couple_cta_text_1"
+                style="@style/text_invert"
+                android:layout_marginTop="21dp"
+                android:text="@string/welcome_cta_text_1" />
+            
+            <TextView
+                android:id="@+id/add_couple_cta_text_2"
+                style="@style/text_invert"
+                android:layout_marginTop="16dp"
+                android:text="@string/welcome_cta_text_2" />
+            
+            <TextView
+                android:id="@+id/add_couple_cta_text_3"
+                style="@style/text_invert"
+                android:layout_marginTop="30dp"
+                android:text="@string/welcome_cta_text_3" />
+
+            <RelativeLayout
+                android:id="@+id/edit_email"
+                style="@style/setup_relative_layout"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp" >
+	            
+	            <ImageView
+	                android:id="@+id/button_invert_box"
+          	  	    style="@style/image_relative_layout"
+                	android:layout_marginTop="20dp"
+	                android:contentDescription="@string/app_logo"
+	                android:src="@drawable/button_invert_box" />
+	            
+	            <Button
+	                android:id="@+id/letsBegin"
+	                style="@style/button_primary_invert"
+	                android:onClick="letsBeginClicked"
+	                android:text="@string/welcome_cta_button_primary" />
+	            
+	        </RelativeLayout>
+
+            
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

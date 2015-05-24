@@ -20,12 +20,12 @@
 
             <TextView
                 android:id="@+id/accept_couple_cta_title"
-                style="@style/setup_text_primary"
+                style="@style/text_primary_bold"
                 android:text="@string/accept_couple_cta_title" />
 
             <TextView
                 android:id="@+id/accept_couple_cta_text"
-                style="@style/setup_text_secondary"
+                style="@style/text_secondary"
                 android:text="@string/accept_couple_cta_text" />
 
             <RelativeLayout
@@ -41,17 +41,18 @@
 
 	            <TextView
 	                android:id="@+id/accept_couple_partner_name"
-	                style="@style/setup_text_primary"
+	                style="@style/text_primary_bold"
 	                android:layout_centerHorizontal="true"
-	                android:layout_marginTop="21dp"
+	                android:layout_marginTop="22dp"
 	                android:text="@string/accept_couple_partner_name" />
 
 	            <TextView
 	                android:id="@+id/accept_couple_partner_email"
 	                style="@style/text_primary"
+	                android:layout_width="220dp"
 	                android:layout_below="@+id/accept_couple_partner_name"
 	                android:layout_centerHorizontal="true"
-	                android:layout_marginTop="4dp"
+	                android:lines="1"
 	                android:text="@string/accept_couple_partner_email" />
 	            
 	        </RelativeLayout>

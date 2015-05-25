@@ -1,7 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/setup_scroll_layout"
-    android:background="@color/app_primary"
+    style="@style/setup_scroll_layout_invert"
     tools:context="com.iwl.bettertogforever.LetsBeginActivity" >
     
     <RelativeLayout

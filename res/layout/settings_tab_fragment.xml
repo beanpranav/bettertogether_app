@@ -4,9 +4,9 @@
     style="@style/setup_linear_layout" >
 
     <TextView
-        android:id="@+id/secretMsg_tab3"
+        android:id="@+id/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="secret message goes here" />
+        android:text="settings goes here" />
 
 </LinearLayout>

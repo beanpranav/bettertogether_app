@@ -1,24 +1,19 @@
 package com.iwl.bettertogforever;
 
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.iwl.bettertogforever.constants.AddSpouseRequestStatusConstants;
-import com.iwl.bettertogforever.constants.MessageTypesConstants;
-import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
-import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
-
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.widget.Toast;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.iwl.bettertogforever.constants.AddSpouseRequestStatusConstants;
+import com.iwl.bettertogforever.constants.MessageTypesConstants;
+import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 

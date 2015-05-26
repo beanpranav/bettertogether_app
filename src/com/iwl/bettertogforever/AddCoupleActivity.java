@@ -5,7 +5,6 @@ import com.iwl.bettertogforever.constants.AddSpouseRequestStatusConstants;
 import com.iwl.bettertogforever.model.response.AddCoupleStatusMsg;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;

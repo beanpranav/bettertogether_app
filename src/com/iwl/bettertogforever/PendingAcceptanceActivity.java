@@ -2,17 +2,13 @@ package com.iwl.bettertogforever;
 
 import com.iwl.bettertogforever.connections.utils.BetterTogForeverHttpConnectUtils;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
-import com.iwl.bettertogforever.model.response.AuthUserIdStatus;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class PendingAcceptanceActivity extends ActivityImpl {

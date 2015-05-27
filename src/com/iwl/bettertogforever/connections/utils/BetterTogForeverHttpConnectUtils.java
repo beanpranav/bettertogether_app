@@ -60,7 +60,6 @@ public class BetterTogForeverHttpConnectUtils {
 		RegIdAdd request = new RegIdAdd();
 		request.setUsrId(userId);
 		request.setRegId(regId);
-		request.setPhoneNo(phone);
 		boolean result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ADD_REGID_PATH, request, Boolean.class);
 	    return result;
 	}

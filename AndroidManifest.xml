@@ -71,6 +71,10 @@
             android:name=".LetsBeginActivity"
             android:label="@string/title_activity_lets_begin" >
         </activity>
+        <activity
+            android:name=".AddNewListActivity"
+            android:label="@string/title_activity_add_new_list" >
+        </activity>
     </application>
 
 </manifest>

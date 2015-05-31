@@ -1,5 +1,6 @@
 package com.iwl.bettertogforever;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,5 +18,10 @@ public class WishlistTabFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.wishlist_tab_fragment, container, false);
         return v;
+    }
+    
+    public void addNewListClicked(View view) {
+    	Intent pendingAcceptanceIntent = new Intent(getActivity(), AddNewListActivity.class);
+		startActivity(pendingAcceptanceIntent);
     }
 }

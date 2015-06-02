@@ -40,7 +40,7 @@ public class AddNewListActivity extends ActivityImpl {
 		return super.onOptionsItemSelected(item);
 	}
 	
-    public void addNewListClicked(View view) {
+    public void addListClicked(View view) {
     	UserIdCoupleIdPair cplId = getUserIdCoupleId();
     	EditText listName = (EditText)findViewById(R.id.addList);
     	new BetterTogForeverHttpConnectUtils().addNewList(cplId.getCoupleId(), listName.getText().toString());

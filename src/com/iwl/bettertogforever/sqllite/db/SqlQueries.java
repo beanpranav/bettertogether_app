@@ -36,4 +36,16 @@ public class SqlQueries {
 																+ " text);";
 	
 	public static final String SECRET_MSG_TABLE_DROP_QUERY = "drop table " + SECRET_MSG_TABLE + ";";
+	
+	public static final String WISHLIST_TABLE = "WISHLIST";
+	public static final String WISHLIST_ID_COLUMN = "WISHLIST_ID";
+	public static final String WISHLIST_DESCRIPTION_COLUMN = "WISHLIST_DESC";
+	
+
+	public static final String WISHLIST_TABLE_CREATE_QUERY = "create table " + WISHLIST_TABLE +
+																"(" + WISHLIST_ID_COLUMN
+																+ " integer," + WISHLIST_DESCRIPTION_COLUMN
+																+ " text);";
+	
+	public static final String WISHLIST_TABLE_DROP_QUERY = "drop table " + WISHLIST_TABLE + ";";
 }

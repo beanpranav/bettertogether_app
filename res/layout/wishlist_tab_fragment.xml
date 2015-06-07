@@ -3,6 +3,12 @@
     android:id="@+id/tab2"
     style="@style/setup_linear_layout" >
     
+     <ListView
+        android:id="@+id/allWishListsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+    
    <Button
         android:id="@+id/addNewList"
         style="@style/button_primary"

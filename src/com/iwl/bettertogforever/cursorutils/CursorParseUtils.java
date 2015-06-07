@@ -1,6 +1,10 @@
 package com.iwl.bettertogforever.cursorutils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
+import com.iwl.bettertogforever.model.WishList;
 
 import android.database.Cursor;
 
@@ -69,5 +73,20 @@ public class CursorParseUtils {
 			throw new RuntimeException("Found more than 1 addCoupleEmails rows");
 		}
 		return coupleTryingToAddEmail;
+	}
+	
+	public List<WishList> getAllWishlist(Cursor cursor) {
+		if(cursor == null || cursor.isAfterLast())
+			return null;
+		List<WishList> wishLists = new ArrayList<WishList>();
+		while(cursor.moveToNext()){
+			WishList wishList = new WishList();
+			Integer id = cursor.getInt(0);
+			String desc = cursor.getString(1);
+			wishList.setId(id);
+			wishList.setDescription(desc);
+			wishLists.add(wishList);
+		}
+		return wishLists;
 	}
 }

@@ -1,7 +1,10 @@
 package com.iwl.bettertogforever.sqllite.db;
 
+import java.util.List;
+
 import com.iwl.bettertogforever.cursorutils.CursorParseUtils;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
+import com.iwl.bettertogforever.model.WishList;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -129,6 +132,22 @@ public class BetterTogForeverSqlliteDao {
 					new String[]{ SqlQueries.USER_ID_COLUMN, SqlQueries.COUPLE_ID_COLUMN},
 	   				null, null, null, null, null);
 		UserIdCoupleIdPair result = parseUtils.getUsrCoupleId(cursor);
+		cursor.close();
+		return result;
+	}
+	
+	public void insertNewWishlist(Integer id, String desc){
+		ContentValues newWishlist = new ContentValues();
+		newWishlist.put(SqlQueries.WISHLIST_ID_COLUMN, id);
+		newWishlist.put(SqlQueries.WISHLIST_DESCRIPTION_COLUMN, desc);
+		database.insert(SqlQueries.WISHLIST_TABLE, null, newWishlist);
+	}
+	
+	public List<WishList> getAllWishList(){
+		Cursor cursor = database.query(SqlQueries.WISHLIST_TABLE, 
+				new String[]{ SqlQueries.WISHLIST_ID_COLUMN, SqlQueries.WISHLIST_DESCRIPTION_COLUMN},
+   				null, null, null, null, null);
+		List<WishList> result = parseUtils.getAllWishlist(cursor);
 		cursor.close();
 		return result;
 	}

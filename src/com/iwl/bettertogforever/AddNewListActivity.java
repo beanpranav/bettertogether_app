@@ -43,8 +43,18 @@ public class AddNewListActivity extends ActivityImpl {
     public void addListClicked(View view) {
     	UserIdCoupleIdPair cplId = getUserIdCoupleId();
     	EditText listName = (EditText)findViewById(R.id.addList);
-    	new BetterTogForeverHttpConnectUtils().addNewList(cplId.getCoupleId(), listName.getText().toString());
+    	Integer listId = new BetterTogForeverHttpConnectUtils().addNewList(cplId.getCoupleId(), listName.getText().toString());
+    	if(listId != 0){
+    		addNewListToDb(listId, listName.getText().toString());
+    	}
     }
+
+	private void addNewListToDb(Integer id, String desc) {
+		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		dbDao.insertNewWishlist(id, desc);
+		dbDao.close();
+	}
 
 	private UserIdCoupleIdPair getUserIdCoupleId() {
 		BetterTogForeverSqlliteDao dbDao = this.getDataSource();

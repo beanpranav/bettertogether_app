@@ -3,6 +3,7 @@
  
     <item name="app_primary" type="color">#21448D</item>
     <item name="app_secondary" type="color">#999999</item>
+    <item name="app_tab" type="color">#F5F5F5</item>
     <item name="app_invert" type="color">#FFFFFF</item>
     <item name="app_black" type="color">#000000</item>
  

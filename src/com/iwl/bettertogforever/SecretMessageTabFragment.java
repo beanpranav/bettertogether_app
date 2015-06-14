@@ -26,9 +26,9 @@ public class SecretMessageTabFragment extends Fragment implements OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.secret_msg_tab_fragment, container, false);
 
-        Button secretMessageButton = (Button)v.findViewById(R.id.addSecretMessage);
-        secretMessageButton.setOnClickListener(this);
-  		TextView secretMessage = (TextView)v.findViewById(R.id.secretMsg);
+//        Button secretMessageButton = (Button)v.findViewById(R.id.addSecretMessage);
+//        secretMessageButton.setOnClickListener(this);
+  		TextView secretMessage = (TextView)v.findViewById(R.id.secret_message_cta_display);
   		String secretMsg = getSecretMsg(v);
   		
   		if(secretMsg == null){
@@ -53,11 +53,11 @@ public class SecretMessageTabFragment extends Fragment implements OnClickListene
 	}
 	
 	public void onClick(View view) {
-		EditText secretMessage = (EditText)getView().findViewById(R.id.secretMsgAddText);
-		String msgToUpdate = secretMessage.getText().toString();
-		UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(this.getView());
-		new BetterTogForeverHttpConnectUtils().addSecretMessage(userIdCoupleId.getUserId(), userIdCoupleId.getCoupleId(), msgToUpdate);
-		Toast.makeText(getView().getContext(), "Sent secret message to your loved one", Toast.LENGTH_LONG);
+//		EditText secretMessage = (EditText)getView().findViewById(R.id.secretMsgAddText);
+//		String msgToUpdate = secretMessage.getText().toString();
+//		UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(this.getView());
+//		new BetterTogForeverHttpConnectUtils().addSecretMessage(userIdCoupleId.getUserId(), userIdCoupleId.getCoupleId(), msgToUpdate);
+//		Toast.makeText(getView().getContext(), "Sent secret message to your loved one", Toast.LENGTH_LONG);
 	}
     
 	private void updateSecretMsgTodb(View v, String msg) {

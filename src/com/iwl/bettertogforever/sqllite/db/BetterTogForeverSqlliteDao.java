@@ -151,4 +151,14 @@ public class BetterTogForeverSqlliteDao {
 		cursor.close();
 		return result;
 	}
+	
+	public Integer getWishListId(String name){
+		Cursor cursor = database.query(SqlQueries.WISHLIST_TABLE, 
+				new String[]{ SqlQueries.WISHLIST_ID_COLUMN},
+   				SqlQueries.WISHLIST_DESCRIPTION_COLUMN + "=" + name, null, null, null, null);
+		
+		Integer result = parseUtils.getWishlistId(cursor);
+		cursor.close();
+		return result;
+	}
 }

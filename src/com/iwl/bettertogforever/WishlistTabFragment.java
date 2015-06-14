@@ -13,10 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
-public class WishlistTabFragment extends Fragment implements OnClickListener{
+public class WishlistTabFragment extends Fragment implements OnClickListener, OnItemClickListener{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class WishlistTabFragment extends Fragment implements OnClickListener{
         WishListTabFragmentAdapter adapter = new WishListTabFragmentAdapter(v, wishLists);
         ListView wishListView = (ListView)v.findViewById(R.id.allWishListsListView);
         wishListView.setAdapter(adapter);
+        wishListView.setOnItemClickListener(this);
         return v;
     }
     
@@ -51,5 +55,16 @@ public class WishlistTabFragment extends Fragment implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		addNewListClicked(v);
+	}
+	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		TextView listText = (TextView) view.findViewById(R.id.textView1);
+        String text = listText.getText().toString();
+        
+        Intent intent = new Intent(view.getContext(), WishlistItemsActivity.class);
+        // add the selected text item to our intent.
+        intent.putExtra("listName", text);
+        startActivity(intent); 
 	}
 }

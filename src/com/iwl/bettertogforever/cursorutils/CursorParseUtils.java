@@ -89,4 +89,17 @@ public class CursorParseUtils {
 		}
 		return wishLists;
 	}
+	
+	public Integer getWishlistId(Cursor cursor) {
+		if(cursor == null || cursor.isAfterLast())
+			return null;
+		
+		cursor.moveToFirst();
+		Integer listId = cursor.getInt(0);
+		cursor.moveToNext();
+		if(!cursor.isAfterLast()){
+			throw new RuntimeException("Found more than 1 list id status rows");
+		}
+		return listId;
+	}
 }

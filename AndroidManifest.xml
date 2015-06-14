@@ -75,6 +75,10 @@
             android:name=".AddNewListActivity"
             android:label="@string/title_activity_add_new_list" >
         </activity>
+        <activity
+            android:name=".WishlistItemsActivity"
+            android:label="@string/title_activity_wishlist_items" >
+        </activity>
     </application>
 
 </manifest>

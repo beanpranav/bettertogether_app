@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.web.client.RestTemplate;
 
+import com.iwl.bettertogforever.model.WishList;
 import com.iwl.bettertogforever.model.request.AddNewList;
 import com.iwl.bettertogforever.model.request.AddOrUpdateSecretMessage;
 import com.iwl.bettertogforever.model.request.AddRemoveToList;
@@ -36,6 +37,7 @@ public class BetterTogForeverHttpConnectUtils {
 	private final String YOU_AND_ME_ADD_NEW_LIST_PATH = "rest/list/addNewList/";
 	private final String YOU_AND_ME_MODIFY_LIST_PATH = "rest/list/addremovetolist/";
 	private final String YOU_AND_ME_FULL_LIST_PATH = "rest/list/getList/";
+	private final String YOU_AND_ME_ALL_COUPLE_LISTS_PATH = "rest/list/getAllWishListsForCouple/";
 	
 	public AuthUserIdStatus authenticateUser(String email, String passwd){
 		
@@ -103,10 +105,11 @@ public class BetterTogForeverHttpConnectUtils {
 	    return result;
 	}
 	
-	public Integer addNewList(Integer cplId, String listName){
+	public Integer addNewList(Integer cplId, String listName, Integer usrId){
 		AddNewList request = new AddNewList();
 		request.setCplId(cplId);
 		request.setListDescription(listName);
+		request.setUsrId(usrId);
 		Integer result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ADD_NEW_LIST_PATH, request, Integer.class);
 	    return result;
 	}
@@ -141,6 +144,14 @@ public class BetterTogForeverHttpConnectUtils {
 		request.setCplId(cplId);
 		request.setListId(listId);
 		FullList result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_FULL_LIST_PATH, request, FullList.class);
+		return result;
+	}
+	
+	public List<WishList> getCoupleLists(Integer cplId) throws ClassNotFoundException, SQLException, IOException{
+
+		UsrIdCplId request = new UsrIdCplId();
+		request.setCplId(cplId);
+		List<WishList> result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ALL_COUPLE_LISTS_PATH, request, List.class);
 		return result;
 	}
 }

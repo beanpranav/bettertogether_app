@@ -43,7 +43,7 @@ public class AddNewListActivity extends ActivityImpl {
     public void addListClicked(View view) {
     	UserIdCoupleIdPair cplId = getUserIdCoupleId();
     	EditText listName = (EditText)findViewById(R.id.addList);
-    	Integer listId = new BetterTogForeverHttpConnectUtils().addNewList(cplId.getCoupleId(), listName.getText().toString());
+    	Integer listId = new BetterTogForeverHttpConnectUtils().addNewList(cplId.getCoupleId(), listName.getText().toString(),cplId.getUserId());
     	if(listId != 0){
     		addNewListToDb(listId, listName.getText().toString());
     	}

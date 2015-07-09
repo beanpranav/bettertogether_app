@@ -6,7 +6,8 @@ public final class MessageTypesConstants {
 	public static final String ADD_COUPLE_MSG_TAG = "add_couple_msg";
 	public static final String ADD_SECRET_MSG_TAG = "add_secret_msg";
 	public static final String SHARED_LIST_MODIFIED_MSG_TAG = "shared_list_modified_msg"; 
-	public static final String ACCEPT_DECLINE_MSG_TAG = "accept_decline_msg"; 
+	public static final String ACCEPT_DECLINE_MSG_TAG = "accept_decline_msg";
+	public static final String NEW_SHARED_LIST_ADDED_TAG = "new_list_added";
 	
 	//add couple notification sending related tags
 	public static final String ADD_SPOUSE_EMAIL_MSG_TAG = "add_spouse_email_tag";
@@ -18,8 +19,12 @@ public final class MessageTypesConstants {
 	
 	//shared list update related tags
 	public static final String SHARED_LIST_DATA = "shared_list_data";
+	public static final String NEW_LIST_ADDED_DESC = "new_list_desc";
+	public static final String NEW_LIST_ADDED_ID = "new_list_desc";
 	
 	//accept decline message tags
 	public static final String ACCEPT_DECLINE_STATUS_DATA = "accept_decline_status_data";
 	public static final String ACCEPT_DECLINE_EMAIL_DATA = "accept_decline_email_data";
+	
+	
 }

@@ -65,12 +65,22 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
     	} else if(msgType.equals(MessageTypesConstants.ACCEPT_DECLINE_MSG_TAG)){
     		Toast.makeText(context, "received accept decline status " + (CharSequence) extras.get(MessageTypesConstants.ACCEPT_DECLINE_EMAIL_DATA), Toast.LENGTH_LONG).show();
     		receivedAddStatusHandling(context, (String)extras.get(MessageTypesConstants.ACCEPT_DECLINE_EMAIL_DATA), (String)extras.get(MessageTypesConstants.ACCEPT_DECLINE_STATUS_DATA));
-    	} else {
+    	} else if(msgType.equals(MessageTypesConstants.NEW_SHARED_LIST_ADDED_TAG)){
+    		Toast.makeText(context, "received new list added ", Toast.LENGTH_LONG).show();
+    		receivedAddListMesssage(context, (String)extras.get(MessageTypesConstants.NEW_LIST_ADDED_ID), (String)extras.get(MessageTypesConstants.NEW_LIST_ADDED_DESC));
+    	} 
+    	else {
     		Toast.makeText(context, "received some message", Toast.LENGTH_LONG).show();
     		
     	}
 	}
 	
+	private void receivedAddListMesssage(Context context, String newListAddedId,
+			String newListAddedDesc) {
+		Integer listId = Integer.parseInt(newListAddedId);
+		insertNewListAdded(listId, newListAddedDesc);
+	}
+
 	private void receivedAddStatusHandling(Context context, String email, String accepted) {
 		if(accepted.equals("true")){
 			updateDbWithReceivedRequest(AddSpouseRequestStatusConstants.ACCEPTED);
@@ -121,6 +131,12 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 	private void updateDbWithReceivedRequest(Integer status) {
 		db.open();
 		db.insertAddSpouseRequestStatus(status);
+		db.close();
+	}
+	
+	private void insertNewListAdded(Integer listid, String description) {
+		db.open();
+		db.insertNewWishlist(listid, description);
 		db.close();
 	}
 }

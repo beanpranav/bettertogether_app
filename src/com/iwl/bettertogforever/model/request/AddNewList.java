@@ -6,7 +6,14 @@ public class AddNewList implements Serializable{
 
 	private Integer cplId;
 	private String listDescription;
+	private Integer usrId;
 	
+	public Integer getUsrId() {
+		return usrId;
+	}
+	public void setUsrId(Integer usrId) {
+		this.usrId = usrId;
+	}
 	public Integer getCplId() {
 		return cplId;
 	}

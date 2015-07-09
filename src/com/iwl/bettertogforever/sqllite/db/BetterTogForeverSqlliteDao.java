@@ -1,5 +1,6 @@
 package com.iwl.bettertogforever.sqllite.db;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.iwl.bettertogforever.cursorutils.CursorParseUtils;
@@ -143,6 +144,10 @@ public class BetterTogForeverSqlliteDao {
 		database.insert(SqlQueries.WISHLIST_TABLE, null, newWishlist);
 	}
 	
+	public void deleteOldWishlist(Integer id){
+		database.delete(SqlQueries.WISHLIST_TABLE, SqlQueries.WISHLIST_ID_COLUMN + "=" + id, null);
+	}
+	
 	public List<WishList> getAllWishList(){
 		Cursor cursor = database.query(SqlQueries.WISHLIST_TABLE, 
 				new String[]{ SqlQueries.WISHLIST_ID_COLUMN, SqlQueries.WISHLIST_DESCRIPTION_COLUMN},
@@ -160,5 +165,55 @@ public class BetterTogForeverSqlliteDao {
 		Integer result = parseUtils.getWishlistId(cursor);
 		cursor.close();
 		return result;
+	}
+	
+	public void updateWishLists(List<WishList> wishLists){
+		List<WishList> currentWishLists = getAllWishList();
+		
+		List<Integer> currentWishlistIds = getIds(currentWishLists);
+		List<Integer> allWishListIds = getIds(wishLists);
+		
+		List<Integer> newWishlistIds = getNewIdsAdded(currentWishlistIds, allWishListIds);
+		
+		for(WishList list: wishLists){
+			if(newWishlistIds.contains(list.getId())){
+				insertNewWishlist(list.getId(), list.getDescription());
+			}
+		}
+		
+		List<Integer> deletedLists = getDeletedIds(currentWishlistIds, allWishListIds);
+		
+		for(Integer id: deletedLists){
+			deleteOldWishlist(id);
+		}
+		
+	}
+
+	private List<Integer> getDeletedIds(List<Integer> currentWishlistIds, List<Integer> allWishListIds) {
+		List<Integer> oldIds = new ArrayList<Integer>();
+		for(Integer id: currentWishlistIds){
+			if(!allWishListIds.contains(id)){
+				oldIds.add(id);
+			}
+		}
+		return oldIds;
+	}
+
+	private List<Integer> getNewIdsAdded(List<Integer> currentWishlistIds, List<Integer> allWishListIds) {
+		List<Integer> newIds = new ArrayList<Integer>();
+		for(Integer id: allWishListIds){
+			if(!currentWishlistIds.contains(id)){
+				newIds.add(id);
+			}
+		}
+		return newIds;
+	}
+
+	private List<Integer> getIds(List<WishList> currentWishLists) {
+		List<Integer> ids = new ArrayList<Integer>();
+		for(WishList list: currentWishLists){
+			ids.add(list.getId());
+		}
+		return ids;
 	}
 }

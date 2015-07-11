@@ -4,7 +4,6 @@ import com.iwl.bettertogforever.connections.utils.BetterTogForeverHttpConnectUti
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;

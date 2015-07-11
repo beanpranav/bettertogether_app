@@ -1,6 +1,8 @@
 package com.iwl.bettertogforever.model;
 
-public class WishList {
+import java.io.Serializable;
+
+public class WishList implements Serializable{
 
 	Integer id;
 	String description;

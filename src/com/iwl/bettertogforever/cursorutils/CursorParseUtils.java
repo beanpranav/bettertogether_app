@@ -76,9 +76,10 @@ public class CursorParseUtils {
 	}
 	
 	public List<WishList> getAllWishlist(Cursor cursor) {
-		if(cursor == null || cursor.isAfterLast())
-			return null;
 		List<WishList> wishLists = new ArrayList<WishList>();
+		if(cursor == null || cursor.isAfterLast())
+			return wishLists;
+		
 		while(cursor.moveToNext()){
 			WishList wishList = new WishList();
 			Integer id = cursor.getInt(0);

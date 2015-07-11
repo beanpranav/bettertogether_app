@@ -1,5 +1,7 @@
 package com.iwl.bettertogforever;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.iwl.bettertogforever.adapters.WishListTabFragmentAdapter;
@@ -35,6 +37,7 @@ public class WishlistTabFragment extends Fragment implements OnClickListener, On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.wishlist_tab_fragment, container, false);
         view = v;
+        
         Button addWishlistButton = (Button)v.findViewById(R.id.addNewList);
         addWishlistButton.setOnClickListener(this);
         List<WishList> wishLists = getAllWishLists(v);
@@ -57,38 +60,9 @@ public class WishlistTabFragment extends Fragment implements OnClickListener, On
 		dbDao.close();
 		return wishLists;
     }
-    
-	@SuppressWarnings("unchecked")
-	private void getAllCoupleLists() {
-        new AsyncTask() {
-        	
-        	@Override
-            protected String doInBackground(Object... params) {
-                String msg = "";
-                try {
-                	UserIdCoupleIdPair usrCpl = getUserIdCoupleId();
-                    List<WishList> allWishLists = new BetterTogForeverHttpConnectUtils().getCoupleLists(usrCpl.getCoupleId());
-                    updateAllWishLists(allWishLists);
-                } catch (Exception ex) {
-                    msg = "Error :" + ex.getMessage();
-                    // If there is an error, don't just keep trying to register.
-                    // Require the user to click a button again, or perform
-                    // exponential back-off.
-                }
-                return msg;
-            }
-        }.execute(null, null, null);
-    }
-
-	private void updateAllWishLists(List<WishList> allWishLists) {
-		BetterTogForeverSqlliteDao dbDao = new ActivityImpl().getDataSourceFromContext(view.getContext());
-		dbDao.open();
-		dbDao.updateWishLists(allWishLists);
-		dbDao.close();
-	}
 	
-	private UserIdCoupleIdPair getUserIdCoupleId() {
-		BetterTogForeverSqlliteDao dbDao = new ActivityImpl().getDataSourceFromContext(view.getContext());
+	private UserIdCoupleIdPair getUserIdCoupleId(View v) {
+		BetterTogForeverSqlliteDao dbDao = new ActivityImpl().getDataSourceFromContext(v.getContext());
 		dbDao.open();
 		UserIdCoupleIdPair userCoupleIdDetail = dbDao.getUserIdCoupleIdPair();
 		dbDao.close();

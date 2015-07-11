@@ -31,7 +31,7 @@ public class SecretMessageTabFragment extends Fragment implements OnClickListene
   		TextView secretMessage = (TextView)v.findViewById(R.id.secret_message_cta_display);
   		String secretMsg = getSecretMsg(v);
   		
-  		if(secretMsg == null){
+  		if(secretMsg == null || secretMsg.trim().equals("")){
   			UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(v); 
   			secretMsg = new BetterTogForeverHttpConnectUtils().getSecretMessage(userIdCoupleId.getUserId(), userIdCoupleId.getCoupleId());
   			updateSecretMsgTodb(v, secretMsg);

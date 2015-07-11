@@ -151,7 +151,25 @@ public class BetterTogForeverHttpConnectUtils {
 
 		UsrIdCplId request = new UsrIdCplId();
 		request.setCplId(cplId);
-		List<WishList> result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ALL_COUPLE_LISTS_PATH, request, List.class);
-		return result;
+		List result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_ALL_COUPLE_LISTS_PATH, request, List.class);
+		
+		//Always comes a LinkedHashMap so converting
+		List<WishList> resultWishLists = convertToWishListList(result);
+		return resultWishLists;
+	}
+
+	private List<WishList> convertToWishListList(List result) {
+		List<WishList> resultWishLists = new ArrayList<WishList>();
+		for(int i =0; i<result.size(); i++){
+			HashMap map = (HashMap) result.get(i);
+			Integer listId = (Integer) map.get("id");
+			String  description = (String) map.get("description");
+			
+			WishList obj = new WishList();
+			obj.setDescription(description);
+			obj.setId(listId);
+			resultWishLists.add(obj);
+		}
+		return resultWishLists;
 	}
 }

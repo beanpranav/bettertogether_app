@@ -1,12 +1,15 @@
 package com.iwl.bettertogforever;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.iwl.bettertogforever.gcm.GCMRegistrationHelper;
 import com.iwl.bettertogforever.connections.utils.BetterTogForeverHttpConnectUtils;
 import com.iwl.bettertogforever.constants.AddSpouseRequestStatusConstants;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
+import com.iwl.bettertogforever.model.WishList;
 import com.iwl.bettertogforever.model.response.AuthUserIdStatus;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
@@ -83,6 +86,7 @@ public class MainActivity extends ActivityImpl {
 				addCoupleIntent.putExtra("userId", userIdCoupleId.getUserId());
 				startActivity(addCoupleIntent);
         	} else {
+        		getCoupleListsInBackground();
         		//The user has already created a couple if we reach this point
         		Intent secretMessageIntent = new Intent(this, SecretMessageActivity.class);
 				startActivity(secretMessageIntent);
@@ -196,6 +200,42 @@ public class MainActivity extends ActivityImpl {
         }.execute(null, null, null);
     }
 	
+		@SuppressWarnings("unchecked")
+		public void getCoupleListsInBackground() {
+			new AsyncTask() {
+	        	
+	        	@Override
+	            protected String doInBackground(Object... params) {
+	                String msg = "";
+	                
+	                	UserIdCoupleIdPair usrCpl = getUserIdCoupleId();
+	                    List<WishList> allWishLists = null;
+						try {
+							allWishLists = new BetterTogForeverHttpConnectUtils().getCoupleLists(usrCpl.getCoupleId());
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	                    updateAllWishLists(allWishLists);
+	                
+	                return msg;
+	            }
+	        }.execute(null, null, null);
+		}
+ 
+
+		private void updateAllWishLists(List<WishList> allWishLists) {
+			BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+			dbDao.open();
+			dbDao.updateWishLists(allWishLists);
+			dbDao.close();
+		}
 	
 	/**
 	 * Stores the registration ID and app versionCode in the application's

@@ -8,9 +8,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.iwl.bettertogforever.WishlistItemsActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+     <ListView
+        android:id="@+id/wishListItemsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+    
+   <Button
+        android:id="@+id/addNewList"
+        style="@style/button_primary"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/wishListItemsListView"
+        android:onClick="addNewListItemClicked"
+        android:text="add New list Item" />
+
 
 </RelativeLayout>

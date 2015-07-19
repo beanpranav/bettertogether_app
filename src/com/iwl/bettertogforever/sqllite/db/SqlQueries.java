@@ -48,4 +48,22 @@ public class SqlQueries {
 																+ " text);";
 	
 	public static final String WISHLIST_TABLE_DROP_QUERY = "drop table " + WISHLIST_TABLE + ";";
+	
+	public static final String WISHLIST_ITEMS_TABLE = "WISHLIST_ITEMS_TABLE";
+	public static final String WISHLIST_ID_WI_COLUMN = "WISHLIST_ID";
+	public static final String WISHLIST_ITEM_ID_COLUMN = "WISHLIST_ITEM_ID";
+	public static final String WISHLIST_ITEM_NAME_COLUMN = "WISHLIST_ITEM_NAME";
+	public static final String WISHLIST_ITEM_DESCRIPTION_COLUMN = "WISHLIST_ITEM_DESC";
+	public static final String WISHLIST_ITEM_STATUS_COLUMN = "WISHLIST_ITEM_STATUS";
+	
+
+	public static final String WISHLIST_ITEMS_TABLE_CREATE_QUERY = "create table " + WISHLIST_ITEMS_TABLE +
+																"(" + WISHLIST_ID_WI_COLUMN
+																+ " integer," + WISHLIST_ITEM_ID_COLUMN
+																+ " integer," + WISHLIST_ITEM_NAME_COLUMN
+																+ " text," + WISHLIST_ITEM_DESCRIPTION_COLUMN
+																+ " text," + WISHLIST_ITEM_STATUS_COLUMN
+																+ " text);";
+	
+	public static final String WISHLIST_ITEMS_TABLE_DROP_QUERY = "drop table " + WISHLIST_ITEMS_TABLE + ";";
 }

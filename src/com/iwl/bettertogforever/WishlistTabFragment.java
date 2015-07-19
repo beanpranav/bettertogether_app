@@ -60,14 +60,6 @@ public class WishlistTabFragment extends Fragment implements OnClickListener, On
 		dbDao.close();
 		return wishLists;
     }
-	
-	private UserIdCoupleIdPair getUserIdCoupleId(View v) {
-		BetterTogForeverSqlliteDao dbDao = new ActivityImpl().getDataSourceFromContext(v.getContext());
-		dbDao.open();
-		UserIdCoupleIdPair userCoupleIdDetail = dbDao.getUserIdCoupleIdPair();
-		dbDao.close();
-		return userCoupleIdDetail;
-	}
 
 	@Override
 	public void onClick(View v) {

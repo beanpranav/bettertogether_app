@@ -1,0 +1,12 @@
+
+	<TableRow xmlns:android="http://schemas.android.com/apk/res/android">
+	    <TextView
+	        style="@id/itemName"
+	        android:id="@+id/attrib_name"
+	        android:textStyle="bold"/>
+	    <TextView
+	        style="@id/itemDescription"
+	        android:id="@+id/attrib_value"
+	        android:gravity="right"
+	        android:textStyle="normal"/>
+	</TableRow>

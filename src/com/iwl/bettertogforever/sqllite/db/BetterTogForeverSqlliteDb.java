@@ -16,6 +16,7 @@ public class BetterTogForeverSqlliteDb extends SQLiteOpenHelper {
 		db.execSQL(SqlQueries.USER_REG_ID_TABLE_CREATE_QUERY);
 		db.execSQL(SqlQueries.SECRET_MSG_TABLE_CREATE_QUERY);
 		db.execSQL(SqlQueries.WISHLIST_TABLE_CREATE_QUERY);
+		db.execSQL(SqlQueries.WISHLIST_ITEMS_TABLE_CREATE_QUERY);
 	}
 
 	@Override
@@ -25,6 +26,7 @@ public class BetterTogForeverSqlliteDb extends SQLiteOpenHelper {
 		db.execSQL(SqlQueries.USER_REG_ID_TABLE_DROP_QUERY); 
 		db.execSQL(SqlQueries.SECRET_MSG_TABLE_DROP_QUERY); 
 		db.execSQL(SqlQueries.WISHLIST_TABLE_DROP_QUERY); 
+		db.execSQL(SqlQueries.WISHLIST_ITEMS_TABLE_DROP_QUERY); 
 		onCreate(db);
 	}
 }

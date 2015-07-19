@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
 import com.iwl.bettertogforever.model.WishList;
+import com.iwl.bettertogforever.model.response.WishListItem;
 
 import android.database.Cursor;
 
@@ -49,6 +50,19 @@ public class CursorParseUtils {
 		return secretMsg;
 	}
 	
+	public Integer getWishlistIdFromDesc(Cursor cursor) {
+		if(cursor == null || cursor.isAfterLast())
+			return 0;
+		
+		cursor.moveToFirst();
+		Integer id = new Integer(cursor.getInt(0));
+		cursor.moveToNext();
+		if(!cursor.isAfterLast()){
+			throw new RuntimeException("Found more than 1 secretMsg rows");
+		}
+		return id;
+	}
+	
 	public Integer getAddSpouseRequestStatus(Cursor cursor) {
 		if(cursor == null || cursor.isAfterLast())
 			return null;
@@ -87,6 +101,27 @@ public class CursorParseUtils {
 			wishList.setId(id);
 			wishList.setDescription(desc);
 			wishLists.add(wishList);
+		}
+		return wishLists;
+	}
+	
+	public List<WishListItem> getWishlistItems(Cursor cursor) {
+		List<WishListItem> wishLists = new ArrayList<WishListItem>();
+		if(cursor == null || cursor.isAfterLast())
+			return wishLists;
+		
+		while(cursor.moveToNext()){
+			WishListItem wishListItem = new WishListItem();
+			Integer id = cursor.getInt(0);
+			String name = cursor.getString(1);
+			String desc = cursor.getString(2);
+			String status = cursor.getString(3);
+			wishListItem.setItemId(id);
+			wishListItem.setItemDescription(desc);
+			wishListItem.setItemName(name);
+			wishListItem.setItemStatus(status);
+			
+			wishLists.add(wishListItem);
 		}
 		return wishLists;
 	}

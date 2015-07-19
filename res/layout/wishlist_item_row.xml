@@ -20,11 +20,20 @@
             android:layout_marginTop="10dp"
             android:textSize="16sp" />
         
-        <CheckBox
+        <TextView
 	        android:id="@+id/status"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="Completed"
-	        android:checked="true" />
+	        />
 
+           
+   	<Button
+        android:id="@+id/deleteListItems"
+        android:layout_width="30dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/status"
+        android:onClick="deleteItemClicked"
+        android:text="del" />
 </RelativeLayout> 

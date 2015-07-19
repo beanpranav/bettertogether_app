@@ -26,7 +26,6 @@
     <string name="secret_message_cta_partner_name">Pragya</string>
     <string name="secret_message_cta_updated_on">April, 24</string>
     <string name="secret_message_cta_display">I love you my smarty pants!</string>
-    
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_couple">AddCoupleActivity</string>
     <string name="title_activity_secret_message">SecretMessageActivity</string>
@@ -36,5 +35,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_new_list">AddNewListActivity</string>
     <string name="title_activity_wishlist_items">WishlistItemsActivity</string>
+    <string name="title_activity_add_wish_list_item">AddWishListItemActivity</string>
+    <string name="title_activity_delete_wishlist_items">DeleteWishlistItemsActivity</string>
 
 </resources>

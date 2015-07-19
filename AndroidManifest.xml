@@ -79,6 +79,11 @@
             android:name=".WishlistItemsActivity"
             android:label="@string/title_activity_wishlist_items" >
         </activity>
+        <activity
+            android:name=".AddWishListItemActivity"
+            android:label="@string/title_activity_add_wish_list_item" >
+        </activity>
+        
     </application>
 
 </manifest>

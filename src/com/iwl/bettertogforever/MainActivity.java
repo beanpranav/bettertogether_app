@@ -11,6 +11,7 @@ import com.iwl.bettertogforever.constants.AddSpouseRequestStatusConstants;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
 import com.iwl.bettertogforever.model.WishList;
 import com.iwl.bettertogforever.model.response.AuthUserIdStatus;
+import com.iwl.bettertogforever.model.response.FullList;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 import android.content.Context;
@@ -47,51 +48,56 @@ public class MainActivity extends ActivityImpl {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	      
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy); 
-        
-        context = getApplicationContext();
-        
-        UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(); 
-        
-        //Its a signed in user but might not have added a couple
-        if(userIdCoupleId != null){
-    		this.userId = userIdCoupleId.getUserId();
-    		doGCMRegistraction();
-    		
-    		String hasReceivedCoupleAddRequest = hasCoupleAddedRequest();
-    		Integer addSpouseRequestStatus = getAddSpouseRequestStatus();
-    		
-    		if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE){
-    			Intent pendingAcceptanceIntent = new Intent(this, PendingAcceptanceActivity.class);
-    			startActivity(pendingAcceptanceIntent);
-    		} else if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.ACCEPTED){
-    			Intent letsBeginIntent = new Intent(this, LetsBeginActivity.class);
-    			startActivity(letsBeginIntent);
-    		} else
-    		//If the user has received adding couple notification earlier then we show the accept couple view.
-    		//Once accepted or declined the hasReceivedCoupleAddRequest will be wiped out. This happens when 
-    		//someone else is trying to add you as a spouse
-    		if(hasReceivedCoupleAddRequest != null){
-    			Intent acceptAddedCoupleIntent = new Intent(this, AcceptAddedCoupleActivity.class);
-    			acceptAddedCoupleIntent.putExtra("coupleEmail", hasReceivedCoupleAddRequest);
-    			acceptAddedCoupleIntent.putExtra("coupleId", userIdCoupleId.getCoupleId());
-				startActivity(acceptAddedCoupleIntent);
-    		} 
-        	//user hasnt added the couple
-    		else if(userIdCoupleId.getCoupleId() == null || userIdCoupleId.getCoupleId() == 0){
-        		Intent addCoupleIntent = new Intent(this, AddCoupleActivity.class);
-
-				addCoupleIntent.putExtra("userId", userIdCoupleId.getUserId());
-				startActivity(addCoupleIntent);
-        	} else {
-        		getCoupleListsInBackground();
-        		//The user has already created a couple if we reach this point
-        		Intent secretMessageIntent = new Intent(this, SecretMessageActivity.class);
-				startActivity(secretMessageIntent);
-        	}
-        }
+	    
+		if(isOnline()){
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	        StrictMode.setThreadPolicy(policy); 
+	        
+	        context = getApplicationContext();
+	        
+	        UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(); 
+	        
+	        //Its a signed in user but might not have added a couple
+	        if(userIdCoupleId != null){
+	    		this.userId = userIdCoupleId.getUserId();
+	    		doGCMRegistraction();
+	    		
+	    		String hasReceivedCoupleAddRequest = hasCoupleAddedRequest();
+	    		Integer addSpouseRequestStatus = getAddSpouseRequestStatus();
+	    		
+	    		if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE){
+	    			Intent pendingAcceptanceIntent = new Intent(this, PendingAcceptanceActivity.class);
+	    			startActivity(pendingAcceptanceIntent);
+	    		} else if(addSpouseRequestStatus == AddSpouseRequestStatusConstants.ACCEPTED){
+	    			getCoupleListsInBackground();
+	    			Intent letsBeginIntent = new Intent(this, LetsBeginActivity.class);
+	    			startActivity(letsBeginIntent);
+	    		} else
+	    		//If the user has received adding couple notification earlier then we show the accept couple view.
+	    		//Once accepted or declined the hasReceivedCoupleAddRequest will be wiped out. This happens when 
+	    		//someone else is trying to add you as a spouse
+	    		if(hasReceivedCoupleAddRequest != null){
+	    			Intent acceptAddedCoupleIntent = new Intent(this, AcceptAddedCoupleActivity.class);
+	    			acceptAddedCoupleIntent.putExtra("coupleEmail", hasReceivedCoupleAddRequest);
+	    			acceptAddedCoupleIntent.putExtra("coupleId", userIdCoupleId.getCoupleId());
+					startActivity(acceptAddedCoupleIntent);
+	    		} 
+	        	//user hasnt added the couple
+	    		else if(userIdCoupleId.getCoupleId() == null || userIdCoupleId.getCoupleId() == 0){
+	        		Intent addCoupleIntent = new Intent(this, AddCoupleActivity.class);
+	
+					addCoupleIntent.putExtra("userId", userIdCoupleId.getUserId());
+					startActivity(addCoupleIntent);
+	        	} else {
+	        		getCoupleListsInBackground();
+	        		//The user has already created a couple if we reach this point
+	        		Intent secretMessageIntent = new Intent(this, SecretMessageActivity.class);
+					startActivity(secretMessageIntent);
+	        	}
+	        }
+		} else{
+			Toast.makeText(context, "check your internet connection. The app doesnt work without a net connection", Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	
@@ -212,6 +218,12 @@ public class MainActivity extends ActivityImpl {
 	                    List<WishList> allWishLists = null;
 						try {
 							allWishLists = new BetterTogForeverHttpConnectUtils().getCoupleLists(usrCpl.getCoupleId());
+							updateAllWishLists(allWishLists);
+		                    
+		                    for(WishList list: allWishLists){
+		                    	FullList itemList = new BetterTogForeverHttpConnectUtils().getFullList(usrCpl.getCoupleId(), list.getId());
+		                    	updateListItems(itemList);
+		                    }
 						} catch (ClassNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -222,13 +234,20 @@ public class MainActivity extends ActivityImpl {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-	                    updateAllWishLists(allWishLists);
 	                
 	                return msg;
 	            }
 	        }.execute(null, null, null);
 		}
  
+
+		protected void updateListItems(FullList itemList) {
+			BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+			dbDao.open();
+			dbDao.updateWishListItems(itemList.getListId(), itemList.getWishListItems());
+			dbDao.close();
+		}
+
 
 		private void updateAllWishLists(List<WishList> allWishLists) {
 			BetterTogForeverSqlliteDao dbDao = this.getDataSource();

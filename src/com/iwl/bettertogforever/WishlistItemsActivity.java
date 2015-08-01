@@ -63,8 +63,15 @@ public class WishlistItemsActivity extends ActivityImpl {
 	}
 	
     public void addNewListItemClicked(View view) {
+
     	Intent addWishListItemActivity = new Intent(view.getContext(), AddWishListItemActivity.class);
     	addWishListItemActivity.putExtra("listId", id);
 		startActivity(addWishListItemActivity);
+    }
+    
+    public void delListItemsClicked(View view) {
+    	Intent delWishListItemActivity = new Intent(view.getContext(), DeleteListItemsActivity.class);
+    	delWishListItemActivity.putExtra("listId", id);
+		startActivity(delWishListItemActivity);
     }
 }

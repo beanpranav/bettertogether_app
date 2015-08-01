@@ -26,14 +26,4 @@
 	        android:layout_height="wrap_content"
 	        android:text="Completed"
 	        />
-
-           
-   	<Button
-        android:id="@+id/deleteListItems"
-        android:layout_width="30dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/status"
-        android:onClick="deleteItemClicked"
-        android:text="del" />
 </RelativeLayout> 

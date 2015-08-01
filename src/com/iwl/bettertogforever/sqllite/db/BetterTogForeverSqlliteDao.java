@@ -169,7 +169,7 @@ public class BetterTogForeverSqlliteDao {
 	}
 	
 	public void deleteOldWishlistItem(Integer wishlistId, Integer itemId){
-		database.delete(SqlQueries.WISHLIST_ITEMS_TABLE, SqlQueries.WISHLIST_ID_WI_COLUMN + "=" + wishlistId + " && " + SqlQueries.WISHLIST_ITEM_ID_COLUMN + "=" + wishlistId, null);
+		database.delete(SqlQueries.WISHLIST_ITEMS_TABLE, SqlQueries.WISHLIST_ID_WI_COLUMN + "=" + wishlistId + " and " + SqlQueries.WISHLIST_ITEM_ID_COLUMN + "=" + wishlistId, null);
 	}
 	
 	public List<WishList> getAllWishList(){

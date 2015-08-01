@@ -83,7 +83,10 @@
             android:name=".AddWishListItemActivity"
             android:label="@string/title_activity_add_wish_list_item" >
         </activity>
-        
+        <activity
+            android:name=".DeleteListItemsActivity"
+            android:label="@string/title_activity_delete_list_items" >
+        </activity>
     </application>
 
 </manifest>

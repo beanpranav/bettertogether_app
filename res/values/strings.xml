@@ -37,5 +37,6 @@
     <string name="title_activity_wishlist_items">WishlistItemsActivity</string>
     <string name="title_activity_add_wish_list_item">AddWishListItemActivity</string>
     <string name="title_activity_delete_wishlist_items">DeleteWishlistItemsActivity</string>
+    <string name="title_activity_delete_list_items">DeleteListItemsActivity</string>
 
 </resources>

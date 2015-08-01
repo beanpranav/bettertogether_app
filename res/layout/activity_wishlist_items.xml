@@ -21,6 +21,14 @@
         android:layout_below="@+id/wishListItemsListView"
         android:onClick="addNewListItemClicked"
         android:text="add New list Item" />
+   
+      <Button
+        android:id="@+id/delListItems"
+        style="@style/button_primary"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/addNewList"
+        android:onClick="delListItemsClicked"
+        android:text="del list Items" />
 
 
 </RelativeLayout>

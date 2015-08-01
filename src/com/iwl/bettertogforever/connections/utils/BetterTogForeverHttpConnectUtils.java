@@ -13,6 +13,8 @@ import com.iwl.bettertogforever.model.WishList;
 import com.iwl.bettertogforever.model.request.AddNewList;
 import com.iwl.bettertogforever.model.request.AddOrUpdateSecretMessage;
 import com.iwl.bettertogforever.model.request.AddRemoveToList;
+import com.iwl.bettertogforever.model.request.CplIdWishlistIdEdit;
+import com.iwl.bettertogforever.model.request.EditListItem;
 import com.iwl.bettertogforever.model.request.GetFullList;
 import com.iwl.bettertogforever.model.request.RegIdAdd;
 import com.iwl.bettertogforever.model.request.CoupleAdd;
@@ -38,6 +40,8 @@ public class BetterTogForeverHttpConnectUtils {
 	private final String YOU_AND_ME_MODIFY_LIST_PATH = "rest/list/addremovetolist/";
 	private final String YOU_AND_ME_FULL_LIST_PATH = "rest/list/getList/";
 	private final String YOU_AND_ME_ALL_COUPLE_LISTS_PATH = "rest/list/getAllWishListsForCouple/";
+	private final String YOU_AND_ME_EDIT_WISHLIST_NAME_PATH = "rest/list/editWishListName/";
+	private final String YOU_AND_ME_EDIT_WISHLIST_ITEM_PATH = "rest/list/editListItem/";
 	
 	public AuthUserIdStatus authenticateUser(String email, String passwd){
 		
@@ -171,5 +175,30 @@ public class BetterTogForeverHttpConnectUtils {
 			resultWishLists.add(obj);
 		}
 		return resultWishLists;
+	}
+	
+	public boolean editWishlistName(Integer cplId, Integer usrId, Integer listId, String newDescription) throws ClassNotFoundException, SQLException, IOException{
+
+		CplIdWishlistIdEdit editListName = new CplIdWishlistIdEdit();
+		editListName.setCplId(cplId);
+		editListName.setUsrId(usrId);
+		editListName.setListId(listId);
+		editListName.setNewDescription(newDescription);
+		boolean result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_EDIT_WISHLIST_NAME_PATH, editListName, Boolean.class);
+		
+		return result;
+	}
+	
+	public boolean editListItem(Integer listItemId, Integer wishlistId, String listName, String listDesc, String status) throws ClassNotFoundException, SQLException, IOException{
+
+		EditListItem listItemDetails = new EditListItem();
+		listItemDetails.setListItemId(listItemId);
+		listItemDetails.setWishlistId(wishlistId);
+		listItemDetails.setListDescription(listDesc);
+		listItemDetails.setListName(listName);
+		listItemDetails.setStatus(status);
+		boolean result = template.postForObject(YOU_AND_ME_SERVER + YOU_AND_ME_EDIT_WISHLIST_ITEM_PATH, listItemDetails, Boolean.class);
+		
+		return result;
 	}
 }

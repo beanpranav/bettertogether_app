@@ -68,17 +68,45 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
     	} else if(msgType.equals(MessageTypesConstants.NEW_SHARED_LIST_ADDED_TAG)){
     		Toast.makeText(context, "received new list added ", Toast.LENGTH_LONG).show();
     		receivedAddListMesssage(context, (String)extras.get(MessageTypesConstants.NEW_LIST_ADDED_ID), (String)extras.get(MessageTypesConstants.NEW_LIST_ADDED_DESC));
-    	} 
-    	else {
+    	} else if(msgType.equals(MessageTypesConstants.LIST_NAME_EDITED_TAG)){
+    		Toast.makeText(context, "received list name edited notification ", Toast.LENGTH_LONG).show();
+    		receivedEditedListNameMessage(context, (String)extras.get(MessageTypesConstants.LIST_CHANGED_LIST_ID_DATA), (String)extras.get(MessageTypesConstants.LIST_CHANGED_NEW_DESCRIPTION_DATA));
+    	} else {
     		Toast.makeText(context, "received some message", Toast.LENGTH_LONG).show();
     		
     	}
 	}
 	
+	private void receivedEditedListNameMessage(Context context, String listId, String listDescription) {
+		editListDescription(Integer.parseInt(listId), listDescription);
+		
+		Notification.Builder mBuilder = new Notification.Builder(context).setAutoCancel(true).setSmallIcon(R.drawable.ic_launcher).setContentTitle("list name edited to ").setContentText(" " + listDescription);
+		Intent mainActivity = new Intent(context, SecretMessageActivity.class);
+		
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, mainActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+		mBuilder.setContentIntent(pendingIntent);
+		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.notify(0, mBuilder.build());
+		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		long[] pattern = {0, 1000, 500, 1000, 500, 1000};
+		vibrator.vibrate(pattern, -1);
+	}
+
 	private void receivedAddListMesssage(Context context, String newListAddedId,
 			String newListAddedDesc) {
 		Integer listId = Integer.parseInt(newListAddedId);
 		insertNewListAdded(listId, newListAddedDesc);
+		
+		Notification.Builder mBuilder = new Notification.Builder(context).setAutoCancel(true).setSmallIcon(R.drawable.ic_launcher).setContentTitle("New list added").setContentText("list desc: " + newListAddedDesc);
+		Intent mainActivity = new Intent(context, SecretMessageActivity.class);
+		
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, mainActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+		mBuilder.setContentIntent(pendingIntent);
+		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		mNotificationManager.notify(0, mBuilder.build());
+		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		long[] pattern = {0, 1000, 500, 1000, 500, 1000};
+		vibrator.vibrate(pattern, -1);
 	}
 
 	private void receivedAddStatusHandling(Context context, String email, String accepted) {
@@ -118,6 +146,12 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 		db.open();
 		db.insertReceivedAddCoupleRequest(email);
 		db.insertCoupleId(coupleId);
+		db.close();
+	}
+	
+	private void editListDescription(Integer listId, String newDescription) {
+		db.open();
+		db.editListName(listId, newDescription);
 		db.close();
 	}
 

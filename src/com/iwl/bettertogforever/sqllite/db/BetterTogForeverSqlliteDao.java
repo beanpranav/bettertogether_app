@@ -203,44 +203,67 @@ public class BetterTogForeverSqlliteDao {
 	}
 
 	public void updateWishListItems(Integer wishlistId, List<WishListItem> wishListItems){
-		List<WishListItem> currentWishLists = getWishListItems(wishlistId);
 		
-		List<Integer> currentWishlistIds = getItemsIds(currentWishLists);
-		List<Integer> allWishListIds = getItemsIds(wishListItems);
-		
-		List<Integer> newWishlistIds = getNewIdsAdded(currentWishlistIds, allWishListIds);
-		List<Integer> deletedLists = getDeletedIds(currentWishlistIds, allWishListIds);
-		
-		
-		for(Integer id: deletedLists){
-			deleteOldWishlistItem(wishlistId, id);
-		}
-		
-		for(WishListItem item: wishListItems){
-			if(newWishlistIds.contains(item.getItemId())){
+		database.beginTransaction();
+		try{
+			database.delete(SqlQueries.WISHLIST_ITEMS_TABLE, SqlQueries.WISHLIST_ID_WI_COLUMN + "=" + wishlistId, null);
+			for(WishListItem item: wishListItems){
 				insertNewWishlistItem(wishlistId, item);
 			}
+			database.setTransactionSuccessful();
+		}finally{
+			database.endTransaction();
 		}
+		
+		
+//		List<WishListItem> currentWishLists = getWishListItems(wishlistId);
+//		
+//		List<Integer> currentWishlistIds = getItemsIds(currentWishLists);
+//		List<Integer> allWishListIds = getItemsIds(wishListItems);
+//		
+//		List<Integer> newWishlistIds = getNewIdsAdded(currentWishlistIds, allWishListIds);
+//		List<Integer> deletedLists = getDeletedIds(currentWishlistIds, allWishListIds);
+//		
+//		
+//		for(Integer id: deletedLists){
+//			deleteOldWishlistItem(wishlistId, id);
+//		}
+//		
+		
 	}
 	
 	public void updateWishLists(List<WishList> wishLists){
-		List<WishList> currentWishLists = getAllWishList();
 		
-		List<Integer> currentWishlistItemIds = getIds(currentWishLists);
-		List<Integer> newWishListItemIds = getIds(wishLists);
-		
-		List<Integer> newWishlistIds = getNewIdsAdded(currentWishlistItemIds, newWishListItemIds);
-		List<Integer> deletedLists = getDeletedIds(currentWishlistItemIds, newWishListItemIds);
-		
-		for(Integer id: deletedLists){
-			deleteOldWishlist(id);
-		}
-		
-		for(WishList list: wishLists){
-			if(newWishlistIds.contains(list.getId())){
+		database.beginTransaction();
+		try{
+			database.execSQL("delete from " + SqlQueries.WISHLIST_TABLE);
+			
+			for(WishList list: wishLists){
 				insertNewWishlist(list.getId(), list.getDescription());
 			}
+			database.setTransactionSuccessful();
+		}finally{
+			database.endTransaction();
 		}
+
+		
+//		List<WishList> currentWishLists = getAllWishList();
+//		
+//		List<Integer> currentWishlistItemIds = getIds(currentWishLists);
+//		List<Integer> newWishListItemIds = getIds(wishLists);
+//		
+//		List<Integer> newWishlistIds = getNewIdsAdded(currentWishlistItemIds, newWishListItemIds);
+//		List<Integer> deletedLists = getDeletedIds(currentWishlistItemIds, newWishListItemIds);
+//		
+//		for(Integer id: deletedLists){
+//			deleteOldWishlist(id);
+//		}
+//		
+//		for(WishList list: wishLists){
+//			if(newWishlistIds.contains(list.getId())){
+//				insertNewWishlist(list.getId(), list.getDescription());
+//			}
+//		}
 	}
 
 	private List<Integer> getDeletedIds(List<Integer> currentWishlistIds, List<Integer> allWishListIds) {
@@ -277,5 +300,11 @@ public class BetterTogForeverSqlliteDao {
 			ids.add(list.getItemId());
 		}
 		return ids;
+	}
+	
+	public void editListName(Integer listId, String newDescription){
+		ContentValues coupleIdContent = new ContentValues();
+		coupleIdContent.put(SqlQueries.WISHLIST_DESCRIPTION_COLUMN, newDescription);
+		database.update(SqlQueries.WISHLIST_TABLE, coupleIdContent,SqlQueries.WISHLIST_ID_COLUMN + " = " + listId , null);
 	}
 }

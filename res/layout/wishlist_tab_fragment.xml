@@ -1,19 +1,31 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tab2"
-    style="@style/setup_linear_layout" >
-    
-     <ListView
-        android:id="@+id/allWishListsListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-    
-   <Button
-        android:id="@+id/addNewList"
-        style="@style/button_primary"
-        android:layout_marginTop="20dp"
-        android:onClick="addNewListClicked"
-        android:text="add New list" />
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/app_invert" >
+
+        <ListView
+            android:id="@+id/allWishListsListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/app_invert" >
+        </ListView>
+
+        <Button
+            android:id="@+id/addNewList"
+            style="@style/action_primary"
+            android:paddingBottom="5dp"
+            android:onClick="addNewListClicked"
+            android:text="+" />
+
+    </RelativeLayout>
 
 </LinearLayout>

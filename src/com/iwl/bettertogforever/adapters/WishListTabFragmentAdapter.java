@@ -51,7 +51,7 @@ public class WishListTabFragmentAdapter extends BaseAdapter {
 	        convertView = inflater.inflate(R.layout.wishlist_tab_fragment_row, parent,false);
 	    }
 		
-		TextView chapterName = (TextView)convertView.findViewById(R.id.textView1);
+		TextView chapterName = (TextView)convertView.findViewById(R.id.wishlist_name);
 
         WishList chapter = wishLists.get(position);
 

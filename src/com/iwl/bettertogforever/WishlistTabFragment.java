@@ -68,7 +68,7 @@ public class WishlistTabFragment extends Fragment implements OnClickListener, On
 	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		TextView listText = (TextView) view.findViewById(R.id.textView1);
+		TextView listText = (TextView) view.findViewById(R.id.wishlist_name);
         String text = listText.getText().toString();
         
         Intent intent = new Intent(view.getContext(), WishlistItemsActivity.class);

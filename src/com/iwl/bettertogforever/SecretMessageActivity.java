@@ -6,6 +6,7 @@ import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,14 @@ public class SecretMessageActivity extends FragmentActivity {
         mTabHost.addTab(
                 mTabHost.newTabSpec("Settings").setIndicator("Tab 3", null),
                 SettingsTabFragment.class, null);
+        
+        Intent currentIntent = getIntent();
+        int defaultTabValue = currentIntent.getIntExtra("defaultTab", 0);
+        
+        if(defaultTabValue != 0){
+        	mTabHost.setCurrentTab(defaultTabValue - 1);
+        }
+        
 	}
 
 	@Override

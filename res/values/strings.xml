@@ -28,7 +28,6 @@
     <string name="secret_message_cta_display">I love you my smarty pants!</string>
     <string name="wishlist_name">Wishlist Name</string>
     <string name="wishlist_summary">4/15 items</string>
-    
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_couple">AddCoupleActivity</string>
     <string name="title_activity_secret_message">SecretMessageActivity</string>
@@ -41,5 +40,6 @@
     <string name="title_activity_add_wish_list_item">AddWishListItemActivity</string>
     <string name="title_activity_delete_wishlist_items">DeleteWishlistItemsActivity</string>
     <string name="title_activity_delete_list_items">DeleteListItemsActivity</string>
+    <string name="title_activity_edit_wishlist_item">EditWishlistItemActivity</string>
 
 </resources>

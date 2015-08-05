@@ -32,6 +32,12 @@ public class BetterTogForeverSqlliteDao {
 		dbHelper.close();
 	}
 	
+	public void toggleItemStatus(Integer listId, Integer itemId,String status){
+		ContentValues statusContent = new ContentValues();
+		statusContent.put(SqlQueries.WISHLIST_ITEM_STATUS_COLUMN, status);
+		database.update(SqlQueries.WISHLIST_ITEMS_TABLE, statusContent, SqlQueries.WISHLIST_ITEM_ID_COLUMN + "=" + itemId + " and " + SqlQueries.WISHLIST_ID_WI_COLUMN + "=" + listId, null);
+	}
+	
 	public Long insertUserId(Integer userId){
 		database.delete(SqlQueries.USER_ID_COUPLE_ID_TABLE, null, null);
 		ContentValues usrId = new ContentValues();

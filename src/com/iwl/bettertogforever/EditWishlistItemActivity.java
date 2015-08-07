@@ -1,14 +1,30 @@
 package com.iwl.bettertogforever;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
+import com.iwl.bettertogforever.connections.utils.BetterTogForeverHttpConnectUtils;
+import com.iwl.bettertogforever.constants.StatusConstants;
+import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class EditWishlistItemActivity extends Activity {
+public class EditWishlistItemActivity extends ActivityImpl {
 
-	
+	Integer listId;
+	Integer itemId;
+	String status;
+	LinearLayout mainLayout;
+	LinearLayout progresLayout;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +32,98 @@ public class EditWishlistItemActivity extends Activity {
 		setContentView(R.layout.activity_edit_wishlist_item);
 		
 		Intent intent = getIntent();
-		Integer listId = intent.getIntExtra("listId", 0);
+		listId = intent.getIntExtra("listId", 0);
 		
-		Integer itemId = intent.getIntExtra("itemId", 0);
+		itemId = intent.getIntExtra("itemId", 0);
 		String name = intent.getStringExtra("name");
 		String desc = intent.getStringExtra("desc");
-		String status = intent.getStringExtra("status");
+		status = intent.getStringExtra("status");
 		
+		TextView listName = (TextView) findViewById(R.id.listName);
+		EditText itemNameComponent = (EditText) findViewById(R.id.itemName);
+		EditText itemDescComponent = (EditText) findViewById(R.id.itemDescription);
+		listName.setText(getListName(listId));
+		itemNameComponent.setText(name);
+		itemDescComponent.setText(desc);
 		
+		mainLayout = (LinearLayout) findViewById(R.id.listLayout);
+		progresLayout = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
+	}
+	
+	public void updateItemClicked(View view) {
+		
+		EditText itemNameComponent = (EditText) findViewById(R.id.itemName);
+		EditText itemDescComponent = (EditText) findViewById(R.id.itemDescription);
+		
+		String itemName = itemNameComponent.getText().toString();
+		String itemDesc = itemDescComponent.getText().toString();
+		
+		updateItemInBackend(this, listId, itemId, status, itemName, itemDesc);
+	}
+	
+    @SuppressWarnings("unchecked")
+	public void updateItemInBackend(final Activity act, final Integer listId, final Integer itemIdCopy, final String statusCopy, final String listNameCopy, final String descCopy) {
+		new AsyncTask<Object, Object, String>() {
+			@Override
+		    protected void onPreExecute() {
+				progresLayout.setVisibility(View.VISIBLE);
+		        mainLayout.setVisibility(View.GONE);
+		        super.onPreExecute();
+		    }
+
+		    @Override
+		    protected void onPostExecute(String result) {
+		        progresLayout.setVisibility(View.GONE);
+		        mainLayout.setVisibility(View.VISIBLE);
+
+				Intent wishListItemsActivity = new Intent(act, WishlistItemsActivity.class);
+				wishListItemsActivity.putExtra("listName", getListName(listId));
+				startActivity(wishListItemsActivity);
+		        super.onPostExecute(result);
+		    }
+			
+			
+        	@Override
+            protected String doInBackground(Object... params) {
+                String msg = "";
+                
+				try {
+					boolean updateStatus = new BetterTogForeverHttpConnectUtils().editListItem(itemIdCopy, listId, listNameCopy, descCopy, statusCopy);
+					if(updateStatus){
+						updateListItemLocalDb(itemIdCopy, listId, listNameCopy, descCopy, statusCopy);
+					}
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
+                return msg;
+            }
+        }.execute(null, null, null);
+	}
+
+
+	private void updateListItemLocalDb(Integer itemIdCopy,
+			Integer listId, String listNameCopy, String descCopy,
+			String statusCopy) {
+		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		dbDao.updateListItem(itemIdCopy, listId, listNameCopy, descCopy, statusCopy);
+		dbDao.close();
+	}
+	
+    private String getListName(Integer listId) {
+    	BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		String listName = dbDao.getWishListName(listId);
+		dbDao.close();
+	    return listName;
 	}
 
 	@Override

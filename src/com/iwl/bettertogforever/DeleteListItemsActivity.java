@@ -21,11 +21,13 @@ import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class DeleteListItemsActivity extends ActivityImpl {
+public class DeleteListItemsActivity extends ActivityImpl implements OnItemClickListener{
 
 	Integer listId;
 	ListView wishListView;
@@ -128,5 +130,11 @@ public class DeleteListItemsActivity extends ActivityImpl {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		
 	}
 }

@@ -29,7 +29,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class WishlistItemsActivity extends ActivityImpl implements OnItemClickListener, OnItemLongClickListener{
 
-	Integer id;
+	Integer listId;
 	WishListItemsActivityAdapter adapter; 
 	
 	@Override
@@ -52,7 +52,7 @@ public class WishlistItemsActivity extends ActivityImpl implements OnItemClickLi
     	BetterTogForeverSqlliteDao dbDao = this.getDataSource();
 		dbDao.open();
 		Integer id = dbDao.getIdFromDesc(desc);
-		this.id = id;
+		this.listId = id;
 		List<WishListItem> wishListItems = dbDao.getWishListItems(id);
 		dbDao.close();
 		return wishListItems;
@@ -80,13 +80,13 @@ public class WishlistItemsActivity extends ActivityImpl implements OnItemClickLi
     public void addNewListItemClicked(View view) {
 
     	Intent addWishListItemActivity = new Intent(view.getContext(), AddWishListItemActivity.class);
-    	addWishListItemActivity.putExtra("listId", id);
+    	addWishListItemActivity.putExtra("listId", listId);
 		startActivity(addWishListItemActivity);
     }
     
     public void delListItemsClicked(View view) {
     	Intent delWishListItemActivity = new Intent(view.getContext(), DeleteListItemsActivity.class);
-    	delWishListItemActivity.putExtra("listId", id);
+    	delWishListItemActivity.putExtra("listId", listId);
 		startActivity(delWishListItemActivity);
     }
 
@@ -101,7 +101,7 @@ public class WishlistItemsActivity extends ActivityImpl implements OnItemClickLi
 		String desc = itemClicked.getItemDescription();
 		
 		Intent editWishListItemActivity = new Intent(view.getContext(), EditWishlistItemActivity.class);
-		editWishListItemActivity.putExtra("listId", id);
+		editWishListItemActivity.putExtra("listId", listId);
 		editWishListItemActivity.putExtra("itemId", itemId);
 		editWishListItemActivity.putExtra("status", status);
 		editWishListItemActivity.putExtra("name", name);
@@ -139,7 +139,7 @@ public class WishlistItemsActivity extends ActivityImpl implements OnItemClickLi
     public void changeItemStatus(Integer itemId, String status){
     	BetterTogForeverSqlliteDao dbDao = this.getDataSource();
 		dbDao.open();
-		dbDao.toggleItemStatus(id, itemId, status);
+		dbDao.toggleItemStatus(listId, itemId, status);
 		dbDao.close();
     }
     
@@ -152,7 +152,7 @@ public class WishlistItemsActivity extends ActivityImpl implements OnItemClickLi
                 String msg = "";
                 
 				try {
-					boolean updateStatus = new BetterTogForeverHttpConnectUtils().editListItem(itemIdCopy, id, listNameCopy, descCopy, statusCopy);
+					boolean updateStatus = new BetterTogForeverHttpConnectUtils().editListItem(itemIdCopy, listId, listNameCopy, descCopy, statusCopy);
 					if(!updateStatus){
 						if(statusCopy.equals(StatusConstants.PENDING_STATUS)){
 							changeItemStatus(itemIdCopy, StatusConstants.COMPLETED_STATUS);

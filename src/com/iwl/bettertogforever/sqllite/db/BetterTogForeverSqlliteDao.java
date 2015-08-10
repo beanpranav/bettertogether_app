@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.iwl.bettertogforever.cursorutils.CursorParseUtils;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
+import com.iwl.bettertogforever.model.UsrNameSpsName;
 import com.iwl.bettertogforever.model.WishList;
 import com.iwl.bettertogforever.model.response.WishListItem;
 
@@ -170,6 +171,13 @@ public class BetterTogForeverSqlliteDao {
 		database.insert(SqlQueries.WISHLIST_ITEMS_TABLE, null, newWishlist);
 	}
 	
+	public void insertCplNameUsrName(String usrName, String cplName){
+		ContentValues cplAndUsrName = new ContentValues();
+		cplAndUsrName.put(SqlQueries.COUPLE_ADD_USER_NAME_COLUMN, usrName);
+		cplAndUsrName.put(SqlQueries.COUPLE_ADD_CPL_NAME_COLUMN, cplName);
+		database.update(SqlQueries.USER_ID_COUPLE_ID_TABLE, cplAndUsrName, null, null);
+	}
+	
 	public void deleteOldWishlist(Integer id){
 		database.delete(SqlQueries.WISHLIST_TABLE, SqlQueries.WISHLIST_ID_COLUMN + "=" + id, null);
 	}
@@ -330,5 +338,15 @@ public class BetterTogForeverSqlliteDao {
 		ContentValues coupleIdContent = new ContentValues();
 		coupleIdContent.put(SqlQueries.WISHLIST_DESCRIPTION_COLUMN, newDescription);
 		database.update(SqlQueries.WISHLIST_TABLE, coupleIdContent,SqlQueries.WISHLIST_ID_COLUMN + " = " + listId , null);
+	}
+	
+	public UsrNameSpsName getUsrNameSpsName(){
+		Cursor cursor = database.query(SqlQueries.USER_ID_COUPLE_ID_TABLE, 
+				new String[]{ SqlQueries.COUPLE_ADD_USER_NAME_COLUMN, SqlQueries.COUPLE_ADD_CPL_NAME_COLUMN},
+   				null, null, null, null, null);
+		
+		UsrNameSpsName result = parseUtils.getUsrNameSpsName(cursor);
+		cursor.close();
+		return result;
 	}
 }

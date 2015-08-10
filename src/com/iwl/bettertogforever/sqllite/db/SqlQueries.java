@@ -11,11 +11,16 @@ public class SqlQueries {
 	public static final String COUPLE_EMAIL_COLUMN = "COUPLE_EMAIL";
 	public static final String COUPLE_ADD_STATUS_COLUMN = "COUPLE_ADD_STATUS_COLUMN";
 	
+	public static final String COUPLE_ADD_USER_NAME_COLUMN = "COUPLE_ADD_USER_NAME_COLUMN";
+	public static final String COUPLE_ADD_CPL_NAME_COLUMN = "COUPLE_ADD_COUPLE_NAME_COLUMN";
+	
 	public static final String USER_ID_COUPLE_ID_TABLE_CREATE_QUERY = "create table " + USER_ID_COUPLE_ID_TABLE +
 																	"(" + USER_ID_COLUMN
 																	+ " integer, " + COUPLE_ID_COLUMN
 																	+ " integer, " + COUPLE_ADD_STATUS_COLUMN
-																	+ " integer," + COUPLE_EMAIL_COLUMN
+																	+ " integer," + COUPLE_ADD_USER_NAME_COLUMN
+																	+ " text," + COUPLE_ADD_CPL_NAME_COLUMN
+																	+ " text,"	+ COUPLE_EMAIL_COLUMN
 																	+ " text);";
 	
 	public static final String USER_REG_ID_TABLE = "USER_REG_ID";

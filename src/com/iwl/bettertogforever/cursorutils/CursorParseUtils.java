@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
+import com.iwl.bettertogforever.model.UsrNameSpsName;
 import com.iwl.bettertogforever.model.WishList;
 import com.iwl.bettertogforever.model.response.WishListItem;
 
@@ -150,5 +151,19 @@ public class CursorParseUtils {
 			throw new RuntimeException("Found more than 1 list id status rows");
 		}
 		return listName;
+	}
+
+	public UsrNameSpsName getUsrNameSpsName(Cursor cursor) {
+		if(cursor == null || cursor.isAfterLast())
+			return null;
+		
+		cursor.moveToFirst();
+		String usrName = cursor.getString(0);
+		String spsName = cursor.getString(1);
+		cursor.moveToNext();
+		if(!cursor.isAfterLast()){
+			throw new RuntimeException("Found more than 1 list id status rows");
+		}
+		return new UsrNameSpsName(usrName, spsName);
 	}
 }

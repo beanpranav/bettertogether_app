@@ -91,6 +91,10 @@
             android:name=".EditWishlistItemActivity"
             android:label="@string/title_activity_edit_wishlist_item" >
         </activity>
+        <activity
+            android:name=".AddSecretMessageActivity"
+            android:label="@string/title_activity_add_secret_message" >
+        </activity>
     </application>
 
 </manifest>

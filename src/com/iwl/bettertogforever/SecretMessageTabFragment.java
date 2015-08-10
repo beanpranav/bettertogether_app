@@ -2,8 +2,10 @@ package com.iwl.bettertogforever;
 
 import com.iwl.bettertogforever.connections.utils.BetterTogForeverHttpConnectUtils;
 import com.iwl.bettertogforever.model.UserIdCoupleIdPair;
+import com.iwl.bettertogforever.model.UsrNameSpsName;
 import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,10 +28,17 @@ public class SecretMessageTabFragment extends Fragment implements OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.secret_msg_tab_fragment, container, false);
 
-//        Button secretMessageButton = (Button)v.findViewById(R.id.addSecretMessage);
-//        secretMessageButton.setOnClickListener(this);
+        Button secretMessageButton = (Button)v.findViewById(R.id.secret_message_cta_add_msg);
+        secretMessageButton.setOnClickListener(this);
   		TextView secretMessage = (TextView)v.findViewById(R.id.secret_message_cta_display);
   		String secretMsg = getSecretMsg(v);
+  		UsrNameSpsName usrNameSpsName = getUsrNameSpsName(v);
+  		
+  		TextView usrNameDisplay = (TextView)v.findViewById(R.id.secret_message_cta_user_name);
+  		TextView spsNameDisplay = (TextView)v.findViewById(R.id.secret_message_cta_partner_name);
+  		
+  		usrNameDisplay.setText(usrNameSpsName.getUsrName());
+  		spsNameDisplay.setText(usrNameSpsName.getSpsName());
   		
   		if(secretMsg == null || secretMsg.trim().equals("")){
   			UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(v); 
@@ -52,12 +61,17 @@ public class SecretMessageTabFragment extends Fragment implements OnClickListene
 		return userCoupleIdDetail;
 	}
 	
+	private UsrNameSpsName getUsrNameSpsName(View v) {
+		BetterTogForeverSqlliteDao dbDao = new ActivityImpl().getDataSourceFromContext(v.getContext());
+		dbDao.open();
+		UsrNameSpsName usrNameSpsName = dbDao.getUsrNameSpsName();
+		dbDao.close();
+		return usrNameSpsName;
+	}
+	
 	public void onClick(View view) {
-//		EditText secretMessage = (EditText)getView().findViewById(R.id.secretMsgAddText);
-//		String msgToUpdate = secretMessage.getText().toString();
-//		UserIdCoupleIdPair userIdCoupleId = getUserIdCoupleId(this.getView());
-//		new BetterTogForeverHttpConnectUtils().addSecretMessage(userIdCoupleId.getUserId(), userIdCoupleId.getCoupleId(), msgToUpdate);
-//		Toast.makeText(getView().getContext(), "Sent secret message to your loved one", Toast.LENGTH_LONG);
+		Intent acceptAddedCouple = new Intent(view.getContext(), AddSecretMessageActivity.class);
+		startActivity(acceptAddedCouple);
 	}
     
 	private void updateSecretMsgTodb(View v, String msg) {

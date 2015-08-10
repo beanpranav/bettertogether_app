@@ -294,6 +294,7 @@ public void signInButtonClicked(View view) {
 				if(isAuthenticatedUserStatus.getCplId() != null && isAuthenticatedUserStatus.getCplStatus() == AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE){
 					insertUserIdToDb(isAuthenticatedUserStatus.getUserId());
 					addCoupleIdToDb(isAuthenticatedUserStatus.getCplId());
+					insertUsrNameCplName(isAuthenticatedUserStatus.getUserName(), isAuthenticatedUserStatus.getSpouseName());
 					this.userId = isAuthenticatedUserStatus.getUserId();
 					doGCMRegistraction();
 					Intent acceptAddedCouple = new Intent(context, AcceptAddedCoupleActivity.class);
@@ -303,6 +304,7 @@ public void signInButtonClicked(View view) {
 				} else if(isAuthenticatedUserStatus.getCplId() != null && isAuthenticatedUserStatus.getCplStatus() == AddSpouseRequestStatusConstants.ACCEPTED){
 					insertUserIdToDb(isAuthenticatedUserStatus.getUserId());
 					addCoupleIdToDb(isAuthenticatedUserStatus.getCplId());
+					insertUsrNameCplName(isAuthenticatedUserStatus.getUserName(), isAuthenticatedUserStatus.getSpouseName());
 					this.userId = isAuthenticatedUserStatus.getUserId();
 					doGCMRegistraction();
 					Intent letsBeginIntent = new Intent(context, LetsBeginActivity.class);
@@ -323,6 +325,13 @@ public void signInButtonClicked(View view) {
 			//redirect to error page
 		}
 	 }
+
+	private void insertUsrNameCplName(String usrName, String cplName) {
+		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		dbDao.insertCplNameUsrName(usrName, cplName);
+		dbDao.close();
+	}
 
 	private void addCoupleIdToDb(Integer cplId) {
 		BetterTogForeverSqlliteDao dbDao = this.getDataSource();

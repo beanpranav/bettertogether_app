@@ -37,21 +37,29 @@ public class AddCoupleActivity extends ActivityImpl {
 		
 		BetterTogForeverHttpConnectUtils httpUtils = new BetterTogForeverHttpConnectUtils();
 		AddCoupleStatusMsg coupleAddedStatus = httpUtils.addCouple(userId, coupleEmail.getText().toString());
+		insertUsrNameCplName(coupleAddedStatus.getUsrName(), coupleAddedStatus.getCplName());
 		
 		if(coupleAddedStatus.isCoupleAdded() && coupleAddedStatus.getAcceptStatus().equals("ACCEPTED")){
 			addCoupleIdToDb(coupleAddedStatus);
 			Intent secretMessageIntent = new Intent(this, SecretMessageActivity.class);
 			startActivity(secretMessageIntent);
 		} else if(coupleAddedStatus.isCoupleAdded() && !coupleAddedStatus.getAcceptStatus().equals("ACCEPTED")) {
+			insertAddSpouseRequestStatus(AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE);
 			Intent pendingAcceptanceActivity = new Intent(this, PendingAcceptanceActivity.class);
 			startActivity(pendingAcceptanceActivity);
-			insertAddSpouseRequestStatus(AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE);
 		} else{
 			Toast.makeText(getApplicationContext(), coupleAddedStatus.getMsg(), Toast.LENGTH_LONG).show();
 			insertAddSpouseRequestStatus(AddSpouseRequestStatusConstants.PENDING_ACCEPTANCE);
 		}
 	}
 
+	private void insertUsrNameCplName(String usrName, String cplName) {
+		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		dbDao.insertCplNameUsrName(usrName, cplName);
+		dbDao.close();
+	}
+	
 	private void insertAddSpouseRequestStatus(Integer pendingAcceptance) {
 		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
 		dbDao.open();

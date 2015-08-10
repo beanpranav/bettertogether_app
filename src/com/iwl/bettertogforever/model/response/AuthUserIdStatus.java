@@ -19,6 +19,25 @@ public class AuthUserIdStatus implements Serializable{
 	private String spouseEmail;
 	private Integer cplStatus;
 	
+	private String spouseName;
+	private String userName;
+	
+	public String getSpouseName() {
+		return spouseName;
+	}
+
+	public void setSpouseName(String spouseName) {
+		this.spouseName = spouseName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public Integer getCplStatus() {
 		return cplStatus;
 	}

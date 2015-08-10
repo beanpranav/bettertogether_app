@@ -17,15 +17,36 @@ public class AddCoupleStatusMsg implements Serializable{
 	private boolean sentToCoupleForApproval;
 	private String acceptStatus;
 	
+	private String usrName;
+	private String cplName;
+	
 	public AddCoupleStatusMsg(){}
 	
-	public AddCoupleStatusMsg(boolean coupleAdded, String msg, Integer coupleId, String acceptStatus){
+	public AddCoupleStatusMsg(boolean coupleAdded, String msg, Integer coupleId, String acceptStatus, String usrName, String cplName){
 		this.coupleAdded = coupleAdded;
 		this.msg = msg;
 		this.coupleId = coupleId;
 		this.acceptStatus = acceptStatus;
+		this.usrName = usrName;
+		this.cplName = cplName;
 	}
 	
+	public String getUsrName() {
+		return usrName;
+	}
+
+	public void setUsrName(String usrName) {
+		this.usrName = usrName;
+	}
+
+	public String getCplName() {
+		return cplName;
+	}
+
+	public void setCplName(String cplName) {
+		this.cplName = cplName;
+	}
+
 	public String getAcceptStatus() {
 		return acceptStatus;
 	}

@@ -15,6 +15,7 @@ import com.iwl.bettertogforever.sqllite.db.BetterTogForeverSqlliteDao;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -45,6 +46,8 @@ public class DeleteListItemsActivity extends ActivityImpl implements OnItemClick
         wishListView = (ListView)findViewById(R.id.wishListDeleteItemsListView);
         wishListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         wishListView.setAdapter(adapter);
+        wishListView.setOnItemClickListener(this);
+        adapter.notifyDataSetChanged();
 	}
 	
 	public void doneSelectingDeleteItemsButtonClicked(View v) {
@@ -61,20 +64,25 @@ public class DeleteListItemsActivity extends ActivityImpl implements OnItemClick
 	}
 	
     @SuppressWarnings("unchecked")
-	private void doDeleteItems(ArrayList<WishListItem> selectedItems) {
+	private void doDeleteItems(final ArrayList<WishListItem> selectedItems) {
     	final List<Integer> itemsToDelIds = new ArrayList<Integer>();
     	for(WishListItem itm: selectedItems){
     		itemsToDelIds.add(itm.getItemId());
     		delListItem(listId, itm.getItemId());
     	}
     	final UserIdCoupleIdPair cplId = getUserIdCoupleId();
-
+		adapter.notifyDataSetChanged();
 			new AsyncTask() {
 	        	
 	        	@Override
 	            protected String doInBackground(Object... params) {
 	        		try {
-						new BetterTogForeverHttpConnectUtils().removeFromList(itemsToDelIds, cplId.getCoupleId(), listId);
+						boolean status = new BetterTogForeverHttpConnectUtils().removeFromList(itemsToDelIds, cplId.getCoupleId(), listId);
+						if(status == false){
+							for(WishListItem itm: selectedItems){
+					    		addItemBack(listId, itm);
+					    	}
+						}
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -90,6 +98,13 @@ public class DeleteListItemsActivity extends ActivityImpl implements OnItemClick
 	        }.execute(null, null, null);
 	}
     
+	protected void addItemBack(Integer listId2, WishListItem itm) {
+		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
+		dbDao.open();
+		dbDao.insertNewWishlistItem(listId2, itm);
+		dbDao.close();
+	}
+
 	private UserIdCoupleIdPair getUserIdCoupleId() {
 		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
 		dbDao.open();
@@ -98,7 +113,7 @@ public class DeleteListItemsActivity extends ActivityImpl implements OnItemClick
 		return userCoupleIdDetail;
 	}
 	
-	private void delListItem(Integer itemId, Integer listId) {
+	private void delListItem(Integer listId, Integer itemId) {
 		BetterTogForeverSqlliteDao dbDao = this.getDataSource();
 		dbDao.open();
 		dbDao.deleteOldWishlistItem(listId, itemId);
@@ -135,6 +150,7 @@ public class DeleteListItemsActivity extends ActivityImpl implements OnItemClick
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		
+		wishListView.setItemChecked(position, true);
+		view.setBackgroundColor(Color.GRAY);
 	}
 }

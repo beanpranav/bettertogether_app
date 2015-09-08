@@ -8,7 +8,6 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
         android:background="@color/app_invert" >
 
         <ListView
@@ -22,9 +21,18 @@
         <Button
             android:id="@+id/addNewList"
             style="@style/action_primary"
-            android:paddingBottom="5dp"
             android:onClick="addNewListClicked"
-            android:text="+" />
+            android:paddingBottom="5dp" />
+
+        <ImageView
+            android:id="@+id/wishlists_icon"
+            style="@style/image_relative_layout"
+            android:layout_alignRight="@+id/addNewList"
+            android:layout_alignTop="@+id/addNewList"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="17dp"
+            android:contentDescription="@string/app_logo"
+            android:src="@drawable/wishlists_icon" />
 
     </RelativeLayout>
 

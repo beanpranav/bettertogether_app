@@ -29,13 +29,13 @@ public class SecretMessageActivity extends FragmentActivity {
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
         mTabHost.addTab(
-                mTabHost.newTabSpec("Secret msg").setIndicator("Tab 1", null),
+                mTabHost.newTabSpec("Secret msg").setIndicator("Love-Note", null),
                 SecretMessageTabFragment.class, null);
         mTabHost.addTab(
-                mTabHost.newTabSpec("Wishlist").setIndicator("Tab 2", null),
+                mTabHost.newTabSpec("Wishlist").setIndicator("Wishlists", null),
                 WishlistTabFragment.class, null);
         mTabHost.addTab(
-                mTabHost.newTabSpec("Settings").setIndicator("Tab 3", null),
+                mTabHost.newTabSpec("Settings").setIndicator("Settings", null),
                 SettingsTabFragment.class, null);
         
         Intent currentIntent = getIntent();
